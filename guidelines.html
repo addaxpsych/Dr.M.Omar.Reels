@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor Guidelines · Dr. M. Omar Reels</title>
+<meta name="description" content="Brand and technical rules every reel must follow — red zone, Arabic accuracy, b-roll, headers, bullets and colour.">
+<meta name="theme-color" content="#08090B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%23C08B23' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23C08B23'/%3E%3C/svg%3E">
+</head>
+<body>
+<div id="page">
+
+  <!-- ==================================================== masthead ==== -->
+  <header class="masthead">
+    <div class="shell masthead__in">
+      <a class="brand" href="index.html">
+        <span class="brand__mark"><i></i></span>
+        <span class="brand__txt">
+          <span class="brand__name">Dr. M. Omar</span>
+          <span class="brand__sub">Reels · Project Management</span>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Dashboard</a>
+        <a href="guidelines.html" aria-current="page">Editor Guidelines</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================================================== hero ==== -->
+  <section class="shell hero">
+    <h1 class="hero__title" data-rise style="animation-delay:.05s">
+      Rules for the<br><em>video editor.</em>
+    </h1>
+    <p class="hero__lede" data-rise style="animation-delay:.14s">
+      These are not suggestions. They are what the approved episodes were built with — follow the
+      numbers exactly. For the full build specification (layer stack, transitions, timing, scrim
+      geometry) see the <a href="M-Omar-Editor-Guide.md" style="color:var(--gold-lift)">complete brand guide</a>.
+    </p>
+    <div class="hero__meta" data-rise style="animation-delay:.22s">
+      <span>Canvas <b>1080 × 1920 @ 30 fps</b></span>
+      <span>Fonts <b>Cairo Black · Cairo Bold</b></span>
+      <span><b>13</b> rules</span>
+    </div>
+  </section>
+
+  <section class="shell section section--tight">
+    <nav class="toc" aria-label="Jump to a rule">
+      <a href="#r1">01 Red zone</a>
+      <a href="#r2">02 Arabic accuracy</a>
+      <a href="#r3">03 Punctuation</a>
+      <a href="#r4">04 Boxes</a>
+      <a href="#r5">05 Surgical footage</a>
+      <a href="#r6">06 B-roll</a>
+      <a href="#r7">07 Music &amp; outro</a>
+      <a href="#r8">08 Header</a>
+      <a href="#r9">09 Side camera</a>
+      <a href="#r10">10 Captions</a>
+      <a href="#r11">11 Bullets</a>
+      <a href="#r12">12 Colour</a>
+      <a href="#r13">13 Pixelation</a>
+    </nav>
+
+    <div class="rules">
+
+      <!-- ================================================= 01 red zone -->
+      <article class="rule" id="r1">
+        <div class="rule__no">01</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Respect the red zone</h2>
+
+          <div class="callout callout--danger">
+            <span class="callout__ic">◆</span>
+            <span><strong>No caption, no text, no important element may land in the red bands</strong> —
+            on any layer, at any time. Instagram covers those edges with its own interface.</span>
+          </div>
+
+          <div class="figs figs--2">
+            <figure class="fig--tall">
+              <img src="assets/redzones.jpeg" alt="Instagram Reels safe zone diagram showing the top, bottom and side areas covered by Instagram's interface.">
+              <figcaption>Instagram covers the edges — design inside the green band</figcaption>
+            </figure>
+            <div>
+              <div class="scroll-x">
+                <table class="spec">
+                  <thead><tr><th>Zone</th><th>Keep clear</th></tr></thead>
+                  <tbody>
+                    <tr><td>Top</td><td class="num">250 px</td></tr>
+                    <tr><td>Bottom</td><td class="num">380 px</td></tr>
+                    <tr><td>Left &amp; right</td><td class="num">120 px each</td></tr>
+                    <tr><td>Safe band</td><td class="num">y 250 → 1540</td></tr>
+                    <tr><td>Usable width</td><td class="num">840 px</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="font-size:.86rem">Measure the <strong>bounding box</strong> of the text, not the
+              baseline — a descender or a second line sits lower than you think.</p>
+            </div>
+          </div>
+
+          <ul>
+            <li>Put a guide layer at all four boundaries and keep it on while you work.</li>
+            <li>Check the <strong>widest</strong> caption in the episode, not the first one.</li>
+            <li>A background box counts as part of the element — its edges must stay inside too.</li>
+          </ul>
+
+          <div class="callout callout--info">
+            <span class="callout__ic">✳</span>
+            <span><strong>One deliberate exception:</strong> the header (rule 08) sits above the 250 px line.
+            That is intentional and matches the approved episodes — <strong>do not move it down</strong> to
+            "fix" it.</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========================================== 02 arabic accuracy -->
+      <article class="rule" id="r2">
+        <div class="rule__no">02</div>
+        <div class="rule__body">
+          <h2 class="rule__title">No spelling mistakes — especially
+            <span class="ar-i">الهمزات</span> and <span class="ar-i">التاء المربوطة</span></h2>
+
+          <p>This is the part the client notices. A single wrong letter undoes a well-built episode.
+          Pay particular attention to the <strong>hamza forms</strong>
+          (<span class="ar-i">أ</span> / <span class="ar-i">إ</span> / <span class="ar-i">ا</span> /
+          <span class="ar-i">آ</span>) and to
+          <strong><span class="ar-i">ة</span> versus <span class="ar-i">ه</span></strong>
+          at the end of a word — by far the most common error.</p>
+
+          <p style="margin-bottom:.35rem">Words that come up again and again, spelled correctly:</p>
+          <div class="chips">
+            <span class="chip">مهمة</span>
+            <span class="chip">حاجة</span>
+            <span class="chip">أسئلة</span>
+            <span class="chip">أيوة</span>
+            <span class="chip">حدة</span>
+            <span class="chip">النتيجة</span>
+          </div>
+
+          <div class="callout callout--warn">
+            <span class="callout__ic">▲</span>
+            <span><strong>Write the spoken words exactly as spoken.</strong> The doctor does not always say
+            what the script says — what he <em>said</em> is what goes on screen. Never retype from memory,
+            from the script, or from what you think you heard.</span>
+          </div>
+
+          <p>Use these sources, and double-check from your end:</p>
+          <ul>
+            <li><a href="https://drive.google.com/drive/folders/1Gv-S6XoAuWYHJNNFXZYc7jdrGKgbDcB-?usp=drive_link" target="_blank" rel="noopener">Accurate SRT files — Series 2</a> — the SRT is the only source of on-screen text</li>
+            <li><a href="https://drive.google.com/drive/folders/1Jg8bCKgJIcH0jaZLfi2qgSb6Cyv3QJ2F?usp=sharing" target="_blank" rel="noopener">Original scripts</a></li>
+          </ul>
+
+          <div class="scroll-x">
+            <table class="spec">
+              <thead><tr><th>Check</th><th>Why it matters</th></tr></thead>
+              <tbody>
+                <tr><td><span class="ar-i">ة</span> vs <span class="ar-i">ه</span> at the end</td><td>The most common error by far</td></tr>
+                <tr><td><span class="ar-i">أ</span> / <span class="ar-i">إ</span> / <span class="ar-i">ا</span></td><td>The wrong hamza changes the word</td></tr>
+                <tr><td><span class="ar-i">ى</span> vs <span class="ar-i">ي</span> at the end</td><td>Very easy to miss on screen</td></tr>
+                <tr><td>Shadda &amp; dialect vowels</td><td>Write what is pronounced — <span class="ar-i">بتدّي</span> not <span class="ar-i">بتدي</span></td></tr>
+                <tr><td>Numbers</td><td>Digits or words? Be consistent within the episode</td></tr>
+                <tr><td>Medical terms</td><td>Lens names, IOL types, procedure names — verify every time</td></tr>
+                <tr><td>Line breaks</td><td>A break must replace a space. Never break inside a word</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Never touch a timestamp, never merge or split a cue, never renumber — change wording only.
+          Read the SRT out loud against the audio once before you build.</p>
+        </div>
+      </article>
+
+      <!-- ============================================== 03 punctuation -->
+      <article class="rule" id="r3">
+        <div class="rule__no">03</div>
+        <div class="rule__body">
+          <h2 class="rule__title">No quotation marks. No commas, dots or full stops.</h2>
+          <p>On-screen text carries none of it. Let the line break and the caption timing do the work
+          that punctuation would normally do.</p>
+          <div class="scroll-x">
+            <table class="spec">
+              <thead><tr><th>Never use</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Quotation marks</td><td class="num">" "  “ ”</td></tr>
+                <tr><td>Commas</td><td class="num">,<span class="ar-i"> ،</span></td></tr>
+                <tr><td>Dots and full stops</td><td class="num">. …</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <!-- ==================================================== 04 boxes -->
+      <article class="rule" id="r4">
+        <div class="rule__no">04</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Text inside a box must be perfectly centred — on all four sides</h2>
+
+          <div class="callout callout--danger">
+            <span class="callout__ic">◆</span>
+            <span><strong>Centre the box on the text's measured bounding box — horizontally AND vertically.</strong>
+            Do not rely on centre justification, and do not centre on the text layer's anchor point.</span>
+          </div>
+
+          <p>With mixed Arabic and Latin text — which happens constantly here: medical terms, numbers,
+          "IOL", "EDOF" — the text layer's origin sits at the <strong>left edge of the text</strong>, not
+          its centre. Centre the box on the anchor and every pill in a stack drifts right by half its own
+          width, each one by a <em>different</em> amount because they are different lengths. It looks like
+          a mistake, because it is one.</p>
+
+          <p>Measure the rendered text rectangle, and place both the text and the box on that rectangle's
+          centre. Then Position <em>is</em> the visual centre and everything lines up. Vertically, centre on
+          the text's optical box, not the baseline — Arabic ascenders and descenders will otherwise push
+          the text high in its pill.</p>
+        </div>
+      </article>
+
+      <!-- ======================================== 05 surgical footage -->
+      <article class="rule" id="r5">
+        <div class="rule__no">05</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Never use real surgical footage</h2>
+          <div class="callout callout--danger">
+            <span class="callout__ic">◆</span>
+            <span><strong>No exceptions.</strong> Not as b-roll, not blurred, not for a fraction of a second.
+            Use the motion graphics and illustrated b-roll instead — see rule 06.</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =================================================== 06 b-roll -->
+      <article class="rule" id="r6">
+        <div class="rule__no">06</div>
+        <div class="rule__body">
+          <h2 class="rule__title">B-roll goes in the cornered box — same dimensions every time</h2>
+
+          <div class="figs figs--2">
+            <figure class="fig--tall">
+              <img src="assets/b-roll.png" alt="Reference frame showing an illustrated eye anatomy b-roll inside a rounded-corner card, centred in the frame.">
+              <figcaption>The rounded card is the default — not full frame</figcaption>
+            </figure>
+            <div>
+              <div class="scroll-x">
+                <table class="spec">
+                  <thead><tr><th>Property</th><th>Value</th></tr></thead>
+                  <tbody>
+                    <tr><td>Width</td><td class="num">929 px <span style="color:var(--ink-4)">(86% of frame)</span></td></tr>
+                    <tr><td>Height</td><td class="num">preserve source ratio</td></tr>
+                    <tr><td>Corner radius</td><td class="num">71 px</td></tr>
+                    <tr><td>Position</td><td class="num">[540, 960] — dead centre</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="font-size:.86rem">The footage behind it stays <strong>full-frame</strong> and dims for
+              the length of the window: opacity 100% → <strong>45%</strong> → 100%, Gaussian blur
+              0 → <strong>98</strong> → 0. Ramp in and out — do not hard-cut the dim.</p>
+            </div>
+          </div>
+
+          <p>Any caption overlapping a b-roll window drops to <strong>y ≈ 1469</strong> so it clears the card.
+          Colour and style are unchanged — only the position moves.</p>
+        </div>
+      </article>
+
+      <!-- ============================================ 07 music & outro -->
+      <article class="rule" id="r7">
+        <div class="rule__no">07</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Music and outro</h2>
+          <div class="scroll-x">
+            <table class="spec">
+              <thead><tr><th>Asset</th><th>File</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Music bed</td>
+                  <td><a href="https://drive.google.com/file/d/1z9OhkHvdQCPN05PzRhO80NV8N_zx_z05/view?usp=drive_link" target="_blank" rel="noopener">Open track ↗</a></td>
+                  <td>Bottom layer, starts at t = 0, trimmed to comp length. Already mixed quiet — place at 0 dB.</td>
+                </tr>
+                <tr>
+                  <td>Outro</td>
+                  <td><a href="https://drive.google.com/file/d/1ix5SlYmuafrogoQrj1qOy3j7zuZPOysA/view?usp=drive_link" target="_blank" rel="noopener">Open outro ↗</a></td>
+                  <td>Exactly <span class="num">5.400 s</span>, full frame, starts at the end of the footage.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Composition length = footage length + 5.40 s.</strong> Nothing overlaps the outro.
+          The voiceover must stay at least <strong>12 dB above the music</strong> at all times — check the
+          mix on phone speakers, not headphones.</p>
+        </div>
+      </article>
+
+      <!-- =================================================== 08 header -->
+      <article class="rule" id="r8">
+        <div class="rule__no">08</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Series name &amp; episode number — respect each series' colours</h2>
+
+          <div class="figs figs--2">
+            <figure>
+              <img src="assets/series%20name%20and%20episode%20number1.png" alt="Frame from Series 1 showing the series name top-left in copper and the episode number top-right.">
+              <figcaption>Series 1 · Refractive — copper</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/series%20name%20and%20episode%20number2.jpg" alt="Frame from Series 2 showing the series name top-left in blue and gold and the episode number top-right.">
+              <figcaption>Series 2 · IOL — blue + gold</figcaption>
+            </figure>
+          </div>
+
+          <p>Both header elements are <strong>Cairo Bold, 27 px</strong>. They appear at the start of hook
+          caption 2 and run until the end of the footage. Fade them in and out — do not pop them on.</p>
+
+          <div class="scroll-x">
+            <table class="spec">
+              <thead><tr><th>Element</th><th>Text</th><th>Position</th><th>Colour</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Series name (top left)</td>
+                  <td><span class="ar">سلسلة عدسات العين</span></td>
+                  <td class="num">[253, 168]</td>
+                  <td>First word <span class="num">#0F48B5</span>, rest <span class="num">#C08B23</span></td>
+                </tr>
+                <tr>
+                  <td>Signature (under it)</td>
+                  <td>signature.png</td>
+                  <td class="num">[248, 211] @ 23.1%</td>
+                  <td>Has its own alpha — do not key it</td>
+                </tr>
+                <tr>
+                  <td>Episode number (top right)</td>
+                  <td><span class="ar">الحلقة - 3 -</span></td>
+                  <td class="num">[886, 190]</td>
+                  <td>First word <span class="num">#0F48B5</span>, rest <span class="num">#C08B23</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout--warn">
+            <span class="callout__ic">▲</span>
+            <span>The values above are the <strong>Series 2</strong> specification. Series 1 uses its own
+            copper palette as shown in the reference frame — <strong>match each series to its own colours</strong>,
+            never carry Series 2's blue onto a Series 1 episode.</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============================================== 09 side camera -->
+      <article class="rule" id="r9">
+        <div class="rule__no">09</div>
+        <div class="rule__body">
+          <h2 class="rule__title">The side view — scale down and drop it to the bottom edge</h2>
+
+          <div class="scroll-x">
+            <table class="spec">
+              <thead><tr><th>Step</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Scale down to</td><td class="num">~95%</td></tr>
+                <tr><td>Move to</td><td class="num">the bottom edge</td></tr>
+                <tr><td>Horizontal placement</td><td class="num">centred between the series name and the episode number</td></tr>
+                <tr><td>Background</td><td><a href="https://drive.google.com/file/d/1zzOFiGHV4MzyqHwbMk514cpH5InfbuA6/view?usp=drive_link" target="_blank" rel="noopener">Open background plate ↗</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Pulling the side camera back leaves a transparent strip across the top of the frame.
+          <strong>Fill it with the background plate.</strong> Do not mask it, and do not scale the footage
+          up to cover it — that is exactly what causes the pixelation in rule 13.</p>
+        </div>
+      </article>
+
+      <!-- ================================================= 10 captions -->
+      <article class="rule" id="r10">
+        <div class="rule__no">10</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Caption defaults</h2>
+
+          <div class="callout callout--warn">
+            <span class="callout__ic">▲</span>
+            <span><strong>Confirm this number before you build.</strong> The brief specifies a default caption
+            size of <strong>30–34 px</strong>. The full brand guide specifies <strong>53 px</strong> on a
+            1080 × 1920 canvas. These describe different working canvases — check which one applies to your
+            project setup before you commit an episode.</span>
+          </div>
+
+          <div class="scroll-x">
+            <table class="spec">
+              <thead><tr><th>Property</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Default size (per brief)</td><td class="num">30 – 34 px</td></tr>
+                <tr><td>Equivalent on 1080 × 1920 (per brand guide)</td><td class="num">53 px — confirm</td></tr>
+                <tr><td>Font</td><td class="num">Cairo Black</td></tr>
+                <tr><td>Leading</td><td class="num">78 px — set manually, never Auto</td></tr>
+                <tr><td>Alignment</td><td class="num">Centred, RTL</td></tr>
+                <tr><td>Max characters per line</td><td class="num">28</td></tr>
+                <tr><td>Max lines</td><td class="num">3</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>Every even line is orange.</strong> Line 1 white, line 2 <span class="num">#FFA806</span>,
+          line 3 white. On a 2-line caption that is the second line; on a 3-line caption the middle line.
+          This is the signature caption look — do not skip it.</p>
+
+          <p>Drop shadow (the effect, not a layer style): black, 75% opacity, 210°, 5 px distance, 5 px
+          softness. Do not replace it with a stroke — a stroke thickens the Arabic letterforms and reads worse.</p>
+        </div>
+      </article>
+
+      <!-- ================================================== 11 bullets -->
+      <article class="rule" id="r11">
+        <div class="rule__no">11</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Bullets — use this style</h2>
+
+          <div class="figs figs--2">
+            <figure>
+              <img src="assets/bullets.jpeg" alt="Frame showing six white rounded pills stacked vertically with deep blue Arabic text, over the doctor.">
+              <figcaption>Stacked white pills, deep blue text</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/bullets%202.png" alt="Frame showing a white heading line above three smaller white pills containing lens type names.">
+              <figcaption>Title line above the item pills</figcaption>
+            </figure>
+          </div>
+
+          <div class="scroll-x">
+            <table class="spec">
+              <thead><tr><th>Element</th><th>Size</th><th>Text</th><th>Box</th></tr></thead>
+              <tbody>
+                <tr><td>Title pill</td><td class="num">56 px</td><td class="num">#FFFFFF</td><td class="num">#FFA400 @ 100%</td></tr>
+                <tr><td>Item pill</td><td class="num">53 px</td><td class="num">#122472</td><td class="num">#FFFFFF @ 92%</td></tr>
+                <tr><td>Padding</td><td class="num">28 px all round</td><td colspan="2">Box height = text height + 2 × padding</td></tr>
+                <tr><td>Gap between pills</td><td class="num">25 px</td><td colspan="2">Stack centred on [540, 960] — measure the assembled stack</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>The whole block is centred <strong>both horizontally and vertically</strong> on the middle of the
+          frame — not pinned to a fixed top position. See rule 04 for how to centre the box on the text
+          correctly.</p>
+
+          <p>The footage behind a bullet scene <strong>stays full-frame</strong> — do not shrink it or slide
+          it away. Instead ramp opacity 100% → <strong>30%</strong> → 100% and Gaussian blur
+          0 → <strong>71</strong> → 0 across the scene. Keeping the doctor visible behind the graphics was a
+          deliberate decision.</p>
+        </div>
+      </article>
+
+      <!-- =================================================== 12 colour -->
+      <article class="rule" id="r12">
+        <div class="rule__no">12</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Colour reference</h2>
+
+          <p style="margin-bottom:.75rem"><strong>Series 2 — series name &amp; episode number</strong></p>
+          <div class="swatches">
+            <div class="sw"><div class="sw__c" style="background:#0F48B5"></div><div class="sw__m"><div class="sw__hex">#0F48B5</div><div class="sw__u">Blue — first word of both header lines</div></div></div>
+            <div class="sw"><div class="sw__c" style="background:#C08B23"></div><div class="sw__m"><div class="sw__hex">#C08B23</div><div class="sw__u">Gold — remaining words of the header</div></div></div>
+          </div>
+
+          <p style="margin-bottom:.75rem"><strong>Captions &amp; highlights</strong></p>
+          <div class="swatches">
+            <div class="sw"><div class="sw__c" style="background:#FFFFFF"></div><div class="sw__m"><div class="sw__hex">#FFFFFF</div><div class="sw__u">Caption lines 1 &amp; 3, bullet pill fill</div></div></div>
+            <div class="sw"><div class="sw__c" style="background:#FFA806"></div><div class="sw__m"><div class="sw__hex">#FFA806</div><div class="sw__u">Caption line 2 — every even line</div></div></div>
+            <div class="sw"><div class="sw__c" style="background:#FFA400"></div><div class="sw__m"><div class="sw__hex">#FFA400</div><div class="sw__u">Hook text, bullet title pill fill</div></div></div>
+            <div class="sw"><div class="sw__c" style="background:#F8A104"></div><div class="sw__m"><div class="sw__hex">#F8A104</div><div class="sw__u">Closing card pill text</div></div></div>
+            <div class="sw"><div class="sw__c" style="background:#122472"></div><div class="sw__m"><div class="sw__hex">#122472</div><div class="sw__u">Bullet item text</div></div></div>
+            <div class="sw"><div class="sw__c" style="background:#111111"></div><div class="sw__m"><div class="sw__hex">#111111</div><div class="sw__u">B-roll label pill</div></div></div>
+          </div>
+
+          <div class="callout callout--warn">
+            <span class="callout__ic">▲</span>
+            <span><strong>White and orange are the first colours to fail.</strong> Recheck contrast every single
+            time text lands on a bright background — the seamless plate, the grey plate, a white b-roll card, a
+            lab coat, a reflection on glass. If you are unsure whether it passes, it doesn't: switch on the
+            caption's black pill (<span class="num">#000000</span> @ 40%). Check it at 100% zoom, and on a
+            phone in daylight.</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =============================================== 13 pixelation -->
+      <article class="rule" id="r13">
+        <div class="rule__no">13</div>
+        <div class="rule__body">
+          <h2 class="rule__title">Avoid pixelation when masking or removing a background</h2>
+
+          <div class="callout callout--danger">
+            <span class="callout__ic">◆</span>
+            <span><strong>Never scale footage up to cover a gap.</strong> Fill the gap with the background
+            plate underneath instead — it costs nothing in quality. Scaling up to hide a transparent strip
+            is the single most common cause of pixelation in these episodes.</span>
+          </div>
+
+          <p>The source footage is 1920 × 1080 landscape. At 1080 × 1920 you have to scale it to
+          <strong>177.78%</strong> to fill the frame — that is already an upscale, and it softens every shot.
+          Before you start, either pre-upscale the source to <strong>3840 × 2160</strong> (the preferred fix —
+          Series 1 already works this way), or build the comp at 608 × 1080 so the footage sits at 100% native
+          pixels and upscale once on export.</p>
+
+          <p>When you key or mask, keep edges clean: do not feather away detail, and do not re-scale a keyed
+          layer after the key. Any softness you introduce before the final upscale gets multiplied by it.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================================================== foot ==== -->
+  <footer class="foot">
+    <div class="shell foot__in">
+      <span>Dr. Mohamed Omar Yousef · Editor guidelines</span>
+      <span><a href="index.html">Dashboard</a> · <a href="M-Omar-Editor-Guide.md">Full brand guide</a></span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

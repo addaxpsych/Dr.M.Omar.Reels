@@ -41,27 +41,56 @@ Valid statuses, exactly as spelled:
 | Status | Shows as | Effect on the row |
 |---|---|---|
 | `"not-started"` | Hasn't started | — |
-| `"in-review"` | In review | Reviewer checkboxes visible |
-| `"revisions"` | Working on revisions | Reviewer checkboxes visible |
-| `"approved"` | Ready to publish | Checkboxes replaced by a **READY TO PUBLISH** band |
-| `"published"` | Published | Checkboxes replaced by a **PUBLISHED** band |
+| `"in-review"` | In review | — |
+| `"revisions"` | Working on revisions | — |
+| `"approved"` | Ready to publish | Adds a **READY TO PUBLISH** band |
+| `"published"` | Published | Adds a **PUBLISHED** band |
 
-### Recipe — tick a reviewer off
+### Recipe — record a verdict
+
+Each version carries one verdict per reviewer. Change the string:
 
 ```js
-reviews: { Hajar: true, Hossam: true }
+versions: [
+  { v: 1, reviews: { Hajar: "approved", Hossam: "revisions" } }
+]
 ```
 
-`true` = checked, `false` = unchecked. These are **display only** — the file is the source of truth,
-nobody ticks a box in the browser.
+Valid verdicts, exactly as spelled:
 
-### Recipe — add a Frame.io link
+| Verdict | Shows as | Meaning |
+|---|---|---|
+| `"pending"` | Hajar pending | Hasn't looked at this cut yet |
+| `"approved"` | Hajar approved | Signed this cut off |
+| `"revisions"` | Hajar requested revisions | Asked for changes on this cut |
+
+These are **display only** — the file is the source of truth, nobody clicks anything in the browser.
+
+### Recipe — send a new cut for review
+
+**Append** a version. Never overwrite the previous one — the history is the point:
+
+```js
+versions: [
+  { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } },
+  { v: 1, reviews: { Hajar: "pending",   Hossam: "pending" } }   // ← new cut
+]
+```
+
+`v` is a number, shown as `V0` / `V1` / `V2`. Most episodes start at `v: 1`; the ones already in
+progress when versioning was introduced start at `v: 0`. Newest goes **last**.
+
+An episode that hasn't started has `versions: []` — no sub-row is drawn.
+
+### Recipe — add a review link
 
 ```js
 link: "https://f.io/XXXXXXXX",
 ```
 
-Use `null` for no link. A row with a link becomes clickable and gets an ↗ chip.
+The link sits on the **episode**, not the version — every version of an episode shares it. Use `null`
+for no link. A row with a link becomes clickable and gets an ↗ chip. Frame.io and Google Drive URLs
+both work; the chip names the host for screen readers.
 
 ### Recipe — post the day's update
 

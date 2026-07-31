@@ -91,6 +91,8 @@
   const ICON = {
     link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>',
     tick: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"/></svg>',
+    warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5 22 20H2z"/><path d="M12 10v4.2M12 17.2v.1"/></svg>',
+    dot:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="12" cy="12" r="7.5"/></svg>',
     chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 9 7 7 7-7"/></svg>',
     star: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.6 6.1 6.6.55-5 4.33 1.5 6.42L12 16.6l-5.7 3.4 1.5-6.42-5-4.33 6.6-.55z"/></svg>',
     live: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19.5 7"/></svg>'
@@ -101,24 +103,49 @@
     return `<span class="pill pill--${esc(status)}"><i></i>${esc(meta.label)}</span>`;
   }
 
-  function reviewCell(ep) {
+  /* The episode-level cell: only ever a sign-off band, or nothing.
+     The per-reviewer detail lives on the version rows below it. */
+  function episodeReviewCell(ep) {
     if (ep.status === "published") {
       return `<div class="band band--published">${ICON.star}Published</div>`;
     }
     if (ep.status === "approved") {
       return `<div class="band band--ready">${ICON.live}Ready to publish</div>`;
     }
-    const boxes = PROJECT.reviewers.map(name => {
-      const on = !!(ep.reviews && ep.reviews[name]);
-      return `<span class="chk ${on ? "is-on" : ""}">
-                <span class="chk__box" role="img"
-                      aria-label="${esc(name)} ${on ? "has signed off" : "has not signed off"}">${on ? ICON.tick : ""}</span>${esc(name)}
-              </span>`;
-    }).join("");
-    return `<div class="checks">${boxes}</div>`;
+    return "";
   }
 
+  /* One chip per reviewer, carrying their verdict on THIS cut. */
+  function verdictChips(version) {
+    return PROJECT.reviewers.map(name => {
+      const verdict = (version.reviews && version.reviews[name]) || "pending";
+      const meta = VERDICT_META[verdict];
+      if (!meta) {
+        console.warn(`Unknown verdict "${verdict}" for ${name} on V${version.v}`);
+      }
+      const label = meta ? meta.label : verdict;
+      const mark = verdict === "approved" ? ICON.tick
+                 : verdict === "revisions" ? ICON.warn
+                 : ICON.dot;
+      return `<span class="vd vd--${esc(verdict)}">
+                <span class="vd__ic" aria-hidden="true">${mark}</span>
+                <b>${esc(name)}</b> ${esc(label)}
+              </span>`;
+    }).join("");
+  }
+
+  function versionRowHTML(ep, version) {
+    return `<tr class="vrow">
+      <td data-c="ep"><span class="vbadge">V${esc(version.v)}</span></td>
+      <td data-c="title"></td>
+      <td data-c="status"></td>
+      <td data-c="reviews"><div class="checks">${verdictChips(version)}</div></td>
+    </tr>`;
+  }
+
+  /* Returns the episode row PLUS one row per version. */
   function rowHTML(ep) {
+    /* Only the episode row is clickable — a version row must not navigate. */
     const trAttrs = ep.link
       ? `class="is-linked" data-href="${esc(ep.link)}"`
       : `class=""`;
@@ -130,7 +157,9 @@
             aria-label="Open ${esc(epLabel(ep.n))} on ${host}">${ICON.link}</a>`
       : "";
 
-    return `<tr ${trAttrs}>
+    const versions = Array.isArray(ep.versions) ? ep.versions : [];
+
+    const head = `<tr ${trAttrs}>
       <td data-c="ep"><span class="ep ${ep.n === "intro" ? "ep--intro" : ""}">${esc(epLabel(ep.n))}</span></td>
       <td data-c="title">
         <div class="tcell">
@@ -139,8 +168,10 @@
         </div>
       </td>
       <td data-c="status">${statusPill(ep.status)}</td>
-      <td data-c="reviews">${reviewCell(ep)}</td>
+      <td data-c="reviews">${episodeReviewCell(ep)}</td>
     </tr>`;
+
+    return head + versions.map(v => versionRowHTML(ep, v)).join("");
   }
 
   /* ------------------------------------------------------------ render -- */
@@ -173,7 +204,7 @@
       const t = tally(s.episodes);
       const n = s.episodes.length;
       return `<a class="mini" href="#series-${esc(s.id)}"
-                 style="--accent-series:${esc(s.accent)};--accent-soft:${esc(s.accentLift)}">
+                 style="--accent-series:${esc(s.accent)};--accent-soft:${esc(s.accentSoft)}">
         <span class="mini__name"><span>S${s.number}</span>${esc(s.name)}</span>
         <span class="mini__count"><b>${t.cleared}</b> / ${n}</span>
         <span class="mini__bar"><span class="bar">${barHTML(t.counts, n)}</span></span>
@@ -204,7 +235,7 @@
       const body = `s-body-${esc(s.id)}`;
 
       return `<section class="series" id="series-${esc(s.id)}"
-                 style="--accent-series:${esc(s.accent)};--accent-soft:${esc(s.accentLift)}">
+                 style="--accent-series:${esc(s.accent)};--accent-soft:${esc(s.accentSoft)}">
         <button class="series__head" id="${head}" aria-expanded="${open}" aria-controls="${body}">
           <span class="series__no">Series ${s.number}</span>
           <span class="series__names">

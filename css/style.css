@@ -42,7 +42,7 @@
   --st-review:     #FFB700;
   --st-notstarted: #D2D2D7;
 
-  --st-approved-ink:  #1D7F3C;
+  --st-approved-ink:  #16682F;   /* dark enough on the recessed version-row tint */
   --st-revisions-ink: #9A4E00;
   --st-review-ink:    #8A5A00;
 
@@ -761,36 +761,57 @@ a { color: inherit; }
 .pill--in-review   { color: var(--st-review-ink);    background: rgba(255, 183, 0, 0.18); }
 .pill--not-started { color: var(--ink-3);            background: var(--ground-2); }
 
-/* reviewer checkboxes (display only).
-   This is the last column now, so it hugs the right edge. */
-.checks { display: flex; gap: 1.1rem; align-items: center; justify-content: flex-end; }
+/* ------------------------------------------------- version rows + verdicts */
 
-.chk {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.8rem;
-  color: var(--ink-3);
+/* A version row is a sub-row of the episode above it: recessed, not clickable,
+   and deliberately quieter than its parent. */
+.vrow { background: var(--tint); }
+.vrow:hover { background: var(--tint); }   /* no hover affordance — not clickable */
+.vrow td { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+.vrow td[data-c="ep"] { padding-left: calc(clamp(1rem, 3vw, 1.75rem) + 0.9rem) !important; }
+
+/* the └ connector tying the badge back to its episode number */
+.vbadge {
+  position: relative;
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--accent-series, var(--ink-2));
+  background: var(--accent-soft, var(--ground-2));
+  border-radius: var(--r-pill);
+  padding: 0.16rem 0.6rem;
   white-space: nowrap;
 }
-.chk__box {
-  width: 16px; height: 16px;
-  flex: none;
-  border-radius: 5px;
-  border: 1.5px solid var(--line-2);
-  background: #fff;
-  display: grid;
-  place-items: center;
-  color: transparent;
-  transition: all 0.22s var(--ease);
+.vbadge::before {
+  content: "";
+  position: absolute;
+  left: -0.72rem;
+  top: 50%;
+  width: 0.42rem;
+  height: 1px;
+  background: var(--line-2);
 }
-.chk__box svg { width: 9px; height: 9px; }
-.chk.is-on { color: var(--ink); font-weight: 500; }
-.chk.is-on .chk__box {
-  background: var(--st-approved);
-  border-color: var(--st-approved);
-  color: #fff;
+
+/* the verdict chips — last column, hugs the right edge */
+.checks { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; align-items: center; justify-content: flex-end; }
+
+.vd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.73rem;
+  padding: 0.24rem 0.62rem;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
 }
+.vd b { font-weight: 600; }
+.vd__ic { display: inline-grid; place-items: center; flex: none; }
+.vd__ic svg { width: 11px; height: 11px; display: block; }
+
+.vd--approved  { color: var(--st-approved-ink);  background: rgba(52, 199, 89, 0.14); }
+.vd--revisions { color: var(--st-revisions-ink); background: rgba(255, 149, 0, 0.14); }
+.vd--pending   { color: var(--ink-3);            background: var(--ground-2); }
 
 /* the band that covers the checkboxes once approved / published */
 .band {
@@ -843,6 +864,21 @@ a { color: inherit; }
   /* left-aligned inside the card, where there is no right edge to hug */
   .checks { justify-content: flex-start; }
   .band { justify-content: flex-start; }
+
+  /* A version row becomes its own compact block, indented under the episode
+     card. Badge on top, verdict chips stacked beneath it. */
+  .tbl tbody tr.vrow {
+    grid-template-areas:
+      "ep  ep"
+      "rev rev";
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: calc(clamp(1rem, 4vw, 1.5rem) + 0.9rem);
+  }
+  .vrow td[data-c="ep"] { padding-left: 0 !important; }
+  .vrow td[data-c="title"], .vrow td[data-c="status"] { display: none; }
+  .vd { font-size: 0.72rem; }
 }
 
 /* ============================================================ guidelines == */

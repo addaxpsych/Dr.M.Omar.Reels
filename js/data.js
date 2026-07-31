@@ -156,11 +156,25 @@ const PROJECT = {
         { n: 3, title: "العدسة العادية ولا العدسة المتقدمة؟ القرار مش بسيط", link: null, status: "approved",
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
         { n: 4, title: "العدسة الترايفوكال أم العدسة ممتدة المجال؟ الحقيقة العلمية وراء الاختيار", link: "https://f.io/Ggs9JQoa", status: "in-review",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } } ] },
+          versions: [
+            { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
+            { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
+            { v: 3, reviews: { Hajar: "revisions", Hossam: "pending" } },
+            { v: 4, reviews: { Hajar: "pending",   Hossam: "pending" } }
+          ] },
         { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "in-review",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } } ] },
+          versions: [
+            { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
+            { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
+            { v: 3, reviews: { Hajar: "approved",  Hossam: "pending" } }
+          ] },
         { n: 6, title: "إزاي تختار العدسة المناسبة ليك؟", link: "https://f.io/itPJNpsP", status: "in-review",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } } ] },
+          versions: [
+            { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
+            { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
+            { v: 3, reviews: { Hajar: "revisions", Hossam: "pending" } },
+            { v: 4, reviews: { Hajar: "pending",   Hossam: "pending" } }
+          ] },
         { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "revisions",
           versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
         { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "revisions",

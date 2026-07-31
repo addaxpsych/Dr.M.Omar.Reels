@@ -63,14 +63,6 @@ link: "https://f.io/XXXXXXXX",
 
 Use `null` for no link. A row with a link becomes clickable and gets an ↗ chip.
 
-### Recipe — add a publish date
-
-```js
-publishDate: "2026-08-14",
-```
-
-Always `YYYY-MM-DD`. Use `null` if not published yet — the column shows an em dash.
-
 ### Recipe — post the day's update
 
 Add a new block at the **top** of the `updates` array:
@@ -137,5 +129,5 @@ Every push to `main` redeploys.
 ## Open item
 
 **Series 3 identity colour is a placeholder.** `js/data.js` marks it with `accentTBD: true`, which
-renders a "colour TBD" flag on the series header. Replace `accent` and `accentLift` on the
+renders a "colour TBD" flag on the series header. Replace `accent` and `accentSoft` on the
 `vision-stories` series when the look is decided, and delete the `accentTBD` line.

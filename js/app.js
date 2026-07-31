@@ -122,11 +122,13 @@
     const trAttrs = ep.link
       ? `class="is-linked" data-href="${esc(ep.link)}"`
       : `class=""`;
+    /* Links are a mix of Frame.io and Google Drive — name the host so the
+       label stays accurate as more sources get added. */
+    const host = ep.link ? (/drive\.google/.test(ep.link) ? "Google Drive" : "Frame.io") : "";
     const chip = ep.link
       ? `<a class="linkchip" href="${esc(ep.link)}" target="_blank" rel="noopener noreferrer"
-            aria-label="Open ${esc(epLabel(ep.n))} in Frame.io">${ICON.link}</a>`
+            aria-label="Open ${esc(epLabel(ep.n))} on ${host}">${ICON.link}</a>`
       : "";
-    const date = fmtDate(ep.publishDate);
 
     return `<tr ${trAttrs}>
       <td data-c="ep"><span class="ep ${ep.n === "intro" ? "ep--intro" : ""}">${esc(epLabel(ep.n))}</span></td>
@@ -138,10 +140,6 @@
       </td>
       <td data-c="status">${statusPill(ep.status)}</td>
       <td data-c="reviews">${reviewCell(ep)}</td>
-      <td data-c="date">${
-        date ? `<span class="date">${esc(date)}</span>`
-             : `<span class="date date--none">—</span>`
-      }</td>
     </tr>`;
   }
 
@@ -175,7 +173,7 @@
       const t = tally(s.episodes);
       const n = s.episodes.length;
       return `<a class="mini" href="#series-${esc(s.id)}"
-                 style="--accent:${esc(s.accent)};--accent-lift:${esc(s.accentLift)}">
+                 style="--accent-series:${esc(s.accent)};--accent-soft:${esc(s.accentLift)}">
         <span class="mini__name"><span>S${s.number}</span>${esc(s.name)}</span>
         <span class="mini__count"><b>${t.cleared}</b> / ${n}</span>
         <span class="mini__bar"><span class="bar">${barHTML(t.counts, n)}</span></span>
@@ -206,7 +204,7 @@
       const body = `s-body-${esc(s.id)}`;
 
       return `<section class="series" id="series-${esc(s.id)}"
-                 style="--accent:${esc(s.accent)};--accent-lift:${esc(s.accentLift)}">
+                 style="--accent-series:${esc(s.accent)};--accent-soft:${esc(s.accentLift)}">
         <button class="series__head" id="${head}" aria-expanded="${open}" aria-controls="${body}">
           <span class="series__no">Series ${s.number}</span>
           <span class="series__names">
@@ -232,7 +230,6 @@
                   <th scope="col">Episode</th>
                   <th scope="col">Status</th>
                   <th scope="col">${PROJECT.reviewers.map(esc).join(" · ")}</th>
-                  <th scope="col">Published</th>
                 </tr></thead>
                 <tbody>${s.episodes.map(rowHTML).join("")}</tbody>
               </table>

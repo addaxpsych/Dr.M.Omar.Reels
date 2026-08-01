@@ -55,6 +55,14 @@ const PROJECT = {
       items: [
         {
           owner: "Hajar",
+          text: "Series 2 Episode 6 — V4 approved. Waiting on Hossam."
+        },
+        {
+          owner: "Hajar",
+          text: "Series 2 Episode 4 — V4 approved. Waiting on Hossam."
+        },
+        {
+          owner: "Hajar",
           text: "Series 1 Episode 5 — V2 reviewed: revisions requested. Waiting on Hossam."
         },
         {
@@ -180,7 +188,7 @@ const PROJECT = {
             { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
             { v: 3, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 4, reviews: { Hajar: "pending",   Hossam: "pending" } }
+            { v: 4, reviews: { Hajar: "approved",  Hossam: "pending" } }
           ] },
         { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "in-review",
           versions: [
@@ -193,7 +201,7 @@ const PROJECT = {
             { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
             { v: 3, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 4, reviews: { Hajar: "pending",   Hossam: "pending" } }
+            { v: 4, reviews: { Hajar: "approved",  Hossam: "pending" } }
           ] },
         { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "revisions",
           versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },

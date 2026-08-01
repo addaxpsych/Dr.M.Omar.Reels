@@ -54,6 +54,10 @@ const PROJECT = {
       date: "2026-08-01",
       items: [
         {
+          owner: "Abdo",
+          text: "Series 1 Episode 4 — V2 delivered and sent for review."
+        },
+        {
           owner: "Hossam",
           text: "Please review Series 2 (IOL), Episodes 7 to 14, before sending the revisions to Alaa, the video editor."
         },
@@ -101,8 +105,9 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
         { n: 3, title: "هل الليزر آمن فعلاً؟ وفيه مخاطرة؟", link: "https://drive.google.com/file/d/1p9ozLNe-D_j8Bz-2MRdzReWJrIdD0m94/view?usp=drive_link", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
-        { n: 4, title: "الليزر بيصلح النظر إزاي؟", link: null, status: "revisions",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } } ] },
+        { n: 4, title: "الليزر بيصلح النظر إزاي؟", link: "https://f.io/UXNc-lOb", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
+                      { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 5, title: "هل كل مقاسات النظر اللي زي بعضها بيناسبها نفس عملية التصحيح؟", link: "https://f.io/dY_V6g1f", status: "revisions",
           versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } } ] },
         { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "revisions",

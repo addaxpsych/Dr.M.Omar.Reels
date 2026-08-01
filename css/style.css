@@ -124,7 +124,7 @@ a { color: inherit; }
    (a table, a long token) push its container past the viewport. Every direct
    item of a grid here is allowed to shrink instead. */
 .dash > *, .dash__side > *, .miniset > *, .serieslist > *,
-.rules > *, .figs > *, .swatches > *, .updates > * { min-width: 0; }
+.rules > *, .figs > *, .swatches > *, .updates > *, .ecards > * { min-width: 0; }
 .rule__body, .series__names, .update__list { min-width: 0; }
 
 /* visually hidden, still read by screen readers and still focusable */
@@ -723,6 +723,14 @@ a { color: inherit; }
   min-width: 0;
 }
 
+/* A few cuts are delivered in English. They keep the column's right alignment
+   so the table still reads as one column, but drop Cairo and the RTL flow. */
+.ttl[lang="en"], .ecard__ttl[lang="en"] {
+  font-family: var(--f-ui);
+  direction: ltr;
+  letter-spacing: -0.01em;
+}
+
 .linkchip {
   flex: none;
   display: inline-grid;
@@ -879,6 +887,109 @@ a { color: inherit; }
   .vrow td[data-c="ep"] { padding-left: 0 !important; }
   .vrow td[data-c="title"], .vrow td[data-c="status"] { display: none; }
   .vd { font-size: 0.72rem; }
+}
+
+/* ==================================================== list / cards view === */
+
+/* The eyebrow is a flex row whose ::after rule line is generated last, so the
+   toggle cannot live inside it — it would land before the rule. */
+.sectionhead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+.sectionhead .eyebrow { flex: 1; margin-bottom: 0; }
+
+/* iOS-style segmented control: recessed track, raised active segment. */
+.viewtoggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--ground-2);
+  border-radius: var(--r-pill);
+  flex: none;
+}
+.viewtoggle button {
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-3);
+  background: none;
+  border: 0;
+  border-radius: var(--r-pill);
+  padding: 0.34rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.22s var(--ease), color 0.22s var(--ease),
+              box-shadow 0.22s var(--ease);
+}
+.viewtoggle button:hover { color: var(--ink-2); }
+.viewtoggle button[aria-pressed="true"] {
+  color: var(--ink);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+/* Only one of the two lives at a time — scoped to .serieslist so the .scroll-x
+   used on the guidelines page is untouched. */
+.serieslist[data-view="list"]  .ecards   { display: none; }
+.serieslist[data-view="cards"] .scroll-x { display: none; }
+
+.ecards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+  gap: 0.75rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border-top: 1px solid var(--line);
+}
+
+.ecard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--panel);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease),
+              transform 0.22s var(--ease);
+}
+.ecard.is-linked { cursor: pointer; }
+.ecard.is-linked:hover {
+  border-color: var(--accent-series, var(--line-2));
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+
+.ecard__top { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+
+.ecard__ttl {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink);
+  flex: 1;
+}
+
+.ecard__meta { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* the latest cut, sitting below a hairline like a card footer */
+.ecard__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+/* the └ connector only means something in the indented table */
+.ecard .vbadge::before { display: none; }
+.ecard .checks { justify-content: flex-start; }
+
+@media (max-width: 560px) {
+  .ecards { grid-template-columns: 1fr; }
 }
 
 /* ============================================================ guidelines == */

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static project-management site tracking the delivery of a 49-reel Arabic ophthalmology video series
+A static project-management site tracking the delivery of a 50-reel Arabic ophthalmology video series
 for Dr. Mohamed Omar Yousef. Two views:
 
 - `index.html` — dashboard: progress, review queue, daily updates, per-episode tables
@@ -61,6 +61,22 @@ Drive; `rowHTML` sniffs the host for the aria-label).
 
 `rowHTML()` returns the episode `<tr>` **plus one `<tr class="vrow">` per version**. Only the episode
 row carries `is-linked`/`data-href` — version rows must never navigate.
+
+### Two views of the same episodes
+
+Every series body renders **both** an episode table (`rowHTML`) and a card grid (`cardHTML`), and a
+single `data-view` attribute on `#serieslist` decides which is visible — CSS does the hiding, nothing
+re-renders on toggle. The List/Cards switch sits in `.sectionhead` above the accordions and persists
+to `localStorage` under `epView`.
+
+The card is deliberately **not** a second full rendering of the row: it shows only the **latest** cut
+and no sign-off band, because the status pill already carries that. Full version history is what List
+view is for. Anything clickable in either view uses the same `is-linked` + `data-href` contract, and
+one delegated handler in `wireUp()` serves both — keep that contract if you add a third view.
+
+Most titles are Arabic, but a few cuts are delivered in English (S1 Ep 25 is Ep 24 in English).
+`titleAttrs()` sniffs for Arabic characters and emits `lang="en" dir="ltr"` when there are none;
+`.ttl[lang="en"]` then drops Cairo and the RTL flow while keeping the column's right alignment.
 
 ### Series accent colours flow through inline custom properties
 

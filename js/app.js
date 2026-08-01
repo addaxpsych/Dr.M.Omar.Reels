@@ -134,6 +134,21 @@
     }).join("");
   }
 
+  /* Titles are Arabic by default, but a few cuts are delivered in English and
+     carry a Latin title — those must not be forced RTL or set in Cairo. */
+  function titleAttrs(ep) {
+    return /[؀-ۿ]/.test(ep.title) ? 'lang="ar"' : 'lang="en" dir="ltr"';
+  }
+
+  /* The little "open the cut" chip. Links are a mix of Frame.io and Google
+     Drive — name the host so the label stays accurate as more get added. */
+  function linkChipHTML(ep) {
+    if (!ep.link) return "";
+    const host = /drive\.google/.test(ep.link) ? "Google Drive" : "Frame.io";
+    return `<a class="linkchip" href="${esc(ep.link)}" target="_blank" rel="noopener noreferrer"
+               aria-label="Open ${esc(epLabel(ep.n))} on ${host}">${ICON.link}</a>`;
+  }
+
   function versionRowHTML(ep, version) {
     return `<tr class="vrow">
       <td data-c="ep"><span class="vbadge">V${esc(version.v)}</span></td>
@@ -149,13 +164,7 @@
     const trAttrs = ep.link
       ? `class="is-linked" data-href="${esc(ep.link)}"`
       : `class=""`;
-    /* Links are a mix of Frame.io and Google Drive — name the host so the
-       label stays accurate as more sources get added. */
-    const host = ep.link ? (/drive\.google/.test(ep.link) ? "Google Drive" : "Frame.io") : "";
-    const chip = ep.link
-      ? `<a class="linkchip" href="${esc(ep.link)}" target="_blank" rel="noopener noreferrer"
-            aria-label="Open ${esc(epLabel(ep.n))} on ${host}">${ICON.link}</a>`
-      : "";
+    const chip = linkChipHTML(ep);
 
     const versions = Array.isArray(ep.versions) ? ep.versions : [];
 
@@ -163,7 +172,7 @@
       <td data-c="ep"><span class="ep ${ep.n === "intro" ? "ep--intro" : ""}">${esc(epLabel(ep.n))}</span></td>
       <td data-c="title">
         <div class="tcell">
-          <span class="ttl" lang="ar">${esc(ep.title)}</span>
+          <span class="ttl" ${titleAttrs(ep)}>${esc(ep.title)}</span>
           ${chip}
         </div>
       </td>
@@ -172,6 +181,32 @@
     </tr>`;
 
     return head + versions.map(v => versionRowHTML(ep, v)).join("");
+  }
+
+  /* The same episode as a card. Deliberately shows only the LATEST cut — the
+     full version history is what List view is for. Same `is-linked`/`data-href`
+     contract as the episode row, so one click handler serves both views. */
+  function cardHTML(ep) {
+    const versions = Array.isArray(ep.versions) ? ep.versions : [];
+    const last = versions.length ? versions[versions.length - 1] : null;
+
+    const foot = last
+      ? `<div class="ecard__foot">
+           <span class="vbadge">V${esc(last.v)}</span>
+           <div class="checks">${verdictChips(last)}</div>
+         </div>`
+      : "";
+
+    return `<article class="ecard ${ep.link ? "is-linked" : ""}"
+                     ${ep.link ? `data-href="${esc(ep.link)}"` : ""}>
+      <div class="ecard__top">
+        <span class="ep ${ep.n === "intro" ? "ep--intro" : ""}">${esc(epLabel(ep.n))}</span>
+        ${linkChipHTML(ep)}
+      </div>
+      <p class="ar ecard__ttl" ${titleAttrs(ep)}>${esc(ep.title)}</p>
+      <div class="ecard__meta">${statusPill(ep.status)}</div>
+      ${foot}
+    </article>`;
   }
 
   /* ------------------------------------------------------------ render -- */
@@ -265,6 +300,7 @@
                 <tbody>${s.episodes.map(rowHTML).join("")}</tbody>
               </table>
             </div>
+            <div class="ecards">${s.episodes.map(cardHTML).join("")}</div>
           </div>
         </div>
       </section>`;
@@ -287,15 +323,18 @@
       });
     });
 
-    /* whole row is clickable when it has a link — but never hijack a real
-       click on the chip itself, or a text selection. */
-    document.querySelectorAll("tr.is-linked").forEach(tr => {
-      tr.addEventListener("click", e => {
+    /* whole row / card is clickable when it has a link — but never hijack a
+       real click on the chip itself, or a text selection. */
+    document.querySelectorAll(".is-linked[data-href]").forEach(el => {
+      el.addEventListener("click", e => {
         if (e.target.closest("a")) return;
         if (String(window.getSelection())) return;
-        window.open(tr.dataset.href, "_blank", "noopener,noreferrer");
+        window.open(el.dataset.href, "_blank", "noopener,noreferrer");
       });
     });
+
+    /* list / cards toggle — one switch, all three series */
+    wireViewToggle();
 
     /* jumping from a mini card must also open that series */
     document.querySelectorAll(".mini").forEach(a => {
@@ -308,6 +347,40 @@
         body.dataset.open = "true";
       });
     });
+  }
+
+  /* --------------------------------------------------- list / cards view -- */
+
+  const VIEW_KEY = "epView";
+  const VIEWS = ["list", "cards"];
+
+  /* localStorage throws in a few environments (file:// with storage blocked,
+     private modes, the jsdom harness) — never let it take the page down. */
+  function storedView() {
+    try {
+      const v = window.localStorage.getItem(VIEW_KEY);
+      return VIEWS.indexOf(v) > -1 ? v : "list";
+    } catch (e) {
+      return "list";
+    }
+  }
+
+  function setView(view, persist) {
+    const list = $("#serieslist");
+    if (!list) return;
+    list.dataset.view = view;
+    document.querySelectorAll("#viewToggle button").forEach(btn => {
+      btn.setAttribute("aria-pressed", String(btn.dataset.view === view));
+    });
+    if (!persist) return;
+    try { window.localStorage.setItem(VIEW_KEY, view); } catch (e) { /* fine */ }
+  }
+
+  function wireViewToggle() {
+    document.querySelectorAll("#viewToggle button").forEach(btn => {
+      btn.addEventListener("click", () => setView(btn.dataset.view, true));
+    });
+    setView(storedView(), false);
   }
 
   /* Bars are rendered at width 0 and filled on the next frame so the CSS

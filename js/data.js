@@ -107,7 +107,7 @@ const PROJECT = {
       tagline: "Laser Vision Secrets",
       accent: "#8F5714",      // copper, dark enough for 11px text on white (AA)
       accentSoft: "#F5EBDD",  // soft wash behind the series badge
-      total: 25,
+      total: 26,
       episodes: [
         { n: "intro", title: "أسرار تصحيح الإبصار — تبسيط علمي لقرار مهم", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
@@ -150,7 +150,9 @@ const PROJECT = {
         { n: 21, title: "أهم قرار قبل عملية الليزر لتصحيح النظر… اختيار الدكتور", link: null, status: "not-started", versions: [] },
         { n: 22, title: "سعر عملية الليزك وتكلفة الفيمتو ليزك في مصر", link: null, status: "not-started", versions: [] },
         { n: 23, title: "سوبر ليزك؟ HD ليزك؟ ألترا ليزك… الحقيقة ورا الأسماء", link: null, status: "not-started", versions: [] },
-        { n: 24, title: "ليه ناس كتير بتسافر مصر تعمل ليزر لتصحيح النظر؟", link: null, status: "not-started", versions: [] }
+        { n: 24, title: "ليه ناس كتير بتسافر مصر تعمل ليزر لتصحيح النظر؟", link: null, status: "not-started", versions: [] },
+        /* Ep 25 is Ep 24 again, delivered in English. A Latin title renders LTR. */
+        { n: 25, title: "Why do so many people travel to Egypt for laser vision correction?", link: null, status: "not-started", versions: [] }
       ]
     },
 

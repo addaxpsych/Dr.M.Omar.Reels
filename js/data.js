@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-01",
+  lastUpdated: "2026-08-02",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar", "Hossam"],
@@ -73,7 +73,7 @@ const PROJECT = {
       role: "Reviewer",
       tone: "lavender",
       tasks: [
-        { label: "Review", series: 1, eps: [5, 6, 7, 8, 11, 12, 13, 14] }
+        { label: "Review", series: 1, eps: [6, 7, 8, 10, 11, 12, 13, 14] }
       ]
     },
     {
@@ -81,7 +81,7 @@ const PROJECT = {
       role: "Reviewer",
       tone: "mint",
       tasks: [
-        { label: "Review", series: 1, eps: [4, 5, 6, 7, 8, 11, 12, 13, 14] },
+        { label: "Review", series: 1, eps: [4, 5, 6, 7, 8, 10, 11, 12, 13, 14] },
         { label: "Review", series: 2, eps: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] }
       ]
     },
@@ -91,6 +91,14 @@ const PROJECT = {
       tone: "rose",
       tasks: [
         { label: "Remake", series: 1, eps: [7, 8, 9, 10, 11, 12, 13, 14] }
+      ]
+    },
+    {
+      person: "Alaa",
+      role: "Video editor",
+      tone: "butter",
+      tasks: [
+        { label: "Revisions", series: 2, eps: [7, 8, 9, 10, 11, 12, 13, 14] }
       ]
     }
   ],
@@ -126,7 +134,7 @@ const PROJECT = {
         { n: 5, title: "هل كل مقاسات النظر اللي زي بعضها بيناسبها نفس عملية التصحيح؟", link: "https://f.io/dY_V6g1f", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
                       { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
-                      { v: 3, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+                      { v: 3, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
         { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
                       { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } } ] },

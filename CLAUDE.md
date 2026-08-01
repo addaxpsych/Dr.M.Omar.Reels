@@ -66,8 +66,10 @@ row carries `is-linked`/`data-href` — version rows must never navigate.
 
 Every series body renders **both** an episode table (`rowHTML`) and a card grid (`cardHTML`), and a
 single `data-view` attribute on `#serieslist` decides which is visible — CSS does the hiding, nothing
-re-renders on toggle. The List/Cards switch sits in `.sectionhead` above the accordions and persists
-to `localStorage` under `epView`.
+re-renders on toggle. The Cards/List switch sits in `.sectionhead` above the accordions and persists
+to `localStorage` under `epView`. **Cards is the default** (`VIEW_DEFAULT` in `app.js`); the markup's
+`data-view="cards"` and `aria-pressed` in `index.html` must be kept in step with it, since `setView()`
+only corrects them once the script has run.
 
 The card is deliberately **not** a second full rendering of the row: it shows only the **latest** cut
 and no sign-off band, because the status pill already carries that. Full version history is what List

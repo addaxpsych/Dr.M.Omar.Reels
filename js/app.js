@@ -352,16 +352,17 @@
   /* --------------------------------------------------- list / cards view -- */
 
   const VIEW_KEY = "epView";
-  const VIEWS = ["list", "cards"];
+  const VIEWS = ["cards", "list"];
+  const VIEW_DEFAULT = "cards";   /* cards is the main view; list is the opt-in */
 
   /* localStorage throws in a few environments (file:// with storage blocked,
      private modes, the jsdom harness) — never let it take the page down. */
   function storedView() {
     try {
       const v = window.localStorage.getItem(VIEW_KEY);
-      return VIEWS.indexOf(v) > -1 ? v : "list";
+      return VIEWS.indexOf(v) > -1 ? v : VIEW_DEFAULT;
     } catch (e) {
-      return "list";
+      return VIEW_DEFAULT;
     }
   }
 

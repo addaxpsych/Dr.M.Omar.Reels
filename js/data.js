@@ -55,6 +55,10 @@ const PROJECT = {
       items: [
         {
           owner: "Abdo",
+          text: "Series 1 Episode 5 — V2 delivered and sent for review."
+        },
+        {
+          owner: "Abdo",
           text: "Series 1 Episode 4 — V2 delivered and sent for review."
         },
         {
@@ -108,8 +112,9 @@ const PROJECT = {
         { n: 4, title: "الليزر بيصلح النظر إزاي؟", link: "https://f.io/UXNc-lOb", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
                       { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
-        { n: 5, title: "هل كل مقاسات النظر اللي زي بعضها بيناسبها نفس عملية التصحيح؟", link: "https://f.io/dY_V6g1f", status: "revisions",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } } ] },
+        { n: 5, title: "هل كل مقاسات النظر اللي زي بعضها بيناسبها نفس عملية التصحيح؟", link: "https://f.io/dY_V6g1f", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
+                      { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "revisions",
           versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } } ] },
         { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "in-review",

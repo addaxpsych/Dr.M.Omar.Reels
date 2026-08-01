@@ -963,6 +963,21 @@ a { color: inherit; }
   transform: translateY(-1px);
 }
 
+/* An episode with no link has nothing to open yet, so its card recedes and the
+   watchable ones come forward. The status pill and verdict chips are left at
+   full strength: they are the only things still worth reading on a placeholder,
+   and fading them would drop them under AA. An opacity group cannot be undone
+   by a child, so the wash is applied to the faded parts, never to an ancestor. */
+.ecard:not(.is-linked) {
+  background: transparent;
+  box-shadow: none;
+}
+.ecard:not(.is-linked) .ep,
+.ecard:not(.is-linked) .ecard__ttl,
+.ecard:not(.is-linked) .vbadge { opacity: 0.62; }
+/* --ink-3 composites to 2.5:1 under that wash; --ink comes back to 4.7:1 */
+.ecard:not(.is-linked) .ep { color: var(--ink); }
+
 .ecard__top { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
 
 .ecard__ttl {

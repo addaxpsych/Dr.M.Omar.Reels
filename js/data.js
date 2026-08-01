@@ -5,7 +5,7 @@
 
    To update the site:
      1. Change a `status`, record a verdict, add a version, or add a `link`
-     2. Add a new block at the TOP of `updates`
+     2. Move or delete episode numbers in `todos` so each person's card is right
      3. Change `lastUpdated` to today
      4. Commit + push. Cloudflare rebuilds in ~30 seconds.
 
@@ -46,57 +46,52 @@ const PROJECT = {
   reviewers: ["Hajar", "Hossam"],
 
   /* --------------------------------------------------------------------------
-     DAILY UPDATES  —  newest block FIRST. The top block is highlighted.
-     `owner` is optional; leave it null for a general note.
+     TO-DO  —  one card per person, shown side by side at the top of the page.
+
+     Each entry in `eps` becomes a clickable button on that person's card. The
+     button's link, Arabic title and status dot are looked up from the `series`
+     data below — you never repeat them here, so a card can never disagree with
+     the episode tables. An episode with no `link` yet renders as a dashed,
+     non-clickable chip.
+
+       person   the name on the card
+       role     the small grey line under it
+       tone     card colour: lavender | mint | rose | peach | butter | sky
+                (these are CSS classes — see `.todo--*` in css/style.css)
+       tasks    one group per line of work:
+                  label   what to do, e.g. "Review" / "Revisions" / "Remake"
+                  series  the series NUMBER (1, 2, 3), not its id
+                  eps     the episode numbers, as numbers
+
+     To hand a task over, move the number from one person's `eps` to another's.
+     To clear a finished task, delete the number. The "N to do" count on each
+     card is counted from this list — there is no total to keep in sync.
      ------------------------------------------------------------------------ */
-  updates: [
+  todos: [
     {
-      date: "2026-08-01",
-      items: [
-        {
-          owner: "Hajar",
-          text: "Series 2 Episode 6 — V4 approved. Waiting on Hossam."
-        },
-        {
-          owner: "Hajar",
-          text: "Series 2 Episode 4 — V4 approved. Waiting on Hossam."
-        },
-        {
-          owner: "Hajar",
-          text: "Series 1 Episode 5 — V2 reviewed: revisions requested. Waiting on Hossam."
-        },
-        {
-          owner: "Hajar",
-          text: "Series 1 Episode 4 — V2 approved. Waiting on Hossam."
-        },
-        {
-          owner: "Abdo",
-          text: "Series 1 Episode 5 — V2 delivered and sent for review."
-        },
-        {
-          owner: "Abdo",
-          text: "Series 1 Episode 4 — V2 delivered and sent for review."
-        },
-        {
-          owner: "Hossam",
-          text: "Please review Series 2 (IOL), Episodes 7 to 14, before sending the revisions to Alaa, the video editor."
-        },
-        {
-          owner: "Samer",
-          text: "Moving Hajar's comments from WhatsApp to Frame.io, to collect all the revisions to request from Alaa in one place."
-        },
-        {
-          owner: "Abdo",
-          text: "Working on the Episode 4, 5 and 6 revisions."
-        },
-        {
-          owner: "Abdo",
-          text: "Working on Ep 7, 8, 10, 11, 12, 13, 14 and 16 — taking them from V0, which does not respect the red zones, to V1, which does."
-        },
-        {
-          owner: "Abdo",
-          text: "Redoing Episodes 8 and 9."
-        }
+      person: "Hajar",
+      role: "Reviewer",
+      tone: "lavender",
+      tasks: [
+        { label: "Review", series: 1, eps: [5, 6, 7, 8, 11, 12, 13, 14] }
+      ]
+    },
+    {
+      person: "Hossam",
+      role: "Reviewer",
+      tone: "mint",
+      tasks: [
+        { label: "Review", series: 1, eps: [4, 5, 6, 7, 8, 11, 12, 13, 14] },
+        { label: "Review", series: 2, eps: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] }
+      ]
+    },
+    {
+      person: "Abdo",
+      role: "Video editor",
+      tone: "rose",
+      tasks: [
+        { label: "Revisions", series: 1, eps: [5, 6] },
+        { label: "Remake",    series: 1, eps: [7, 8, 9, 10, 11, 12, 13, 14] }
       ]
     }
   ],
@@ -114,7 +109,8 @@ const PROJECT = {
       nameAr: "أسرار تصحيح الإبصار",
       tagline: "Laser Vision Secrets",
       accent: "#8F5714",      // copper, dark enough for 11px text on white (AA)
-      accentSoft: "#F5EBDD",  // soft wash behind the series badge
+      accentSoft: "#FEDBBF",  // peach wash — the series head, minis and cards
+                              // (copper on it is 4.6:1, measured)
       total: 26,
       episodes: [
         { n: "intro", title: "أسرار تصحيح الإبصار — تبسيط علمي لقرار مهم", link: null, status: "published",
@@ -172,7 +168,8 @@ const PROJECT = {
       nameAr: "سلسلة عدسات العين",
       tagline: "Inside the Eye",
       accent: "#0F48B5",      // brand blue — confirmed. Editor guide §5.3 / §15
-      accentSoft: "#E4EDFB",  // soft wash behind the series badge
+      accentSoft: "#CCE3FF",  // sky wash — the series head, minis and cards
+                              // (brand blue on it is 6.1:1, measured)
       total: 15,
       episodes: [
         { n: "intro", title: "العدسات داخل العين — تبسيط علمي لقرار مهم", link: null, status: "published",

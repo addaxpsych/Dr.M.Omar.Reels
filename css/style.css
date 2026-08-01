@@ -11,49 +11,105 @@
 /* ---------------------------------------------------------------- tokens -- */
 :root {
   /* ground */
-  --ground:   #FFFFFF;
-  --ground-2: #F5F5F7;   /* wells, table header rows */
-  --panel:    #FFFFFF;   /* cards */
+  --ground:   #F7F6FA;   /* page — off-white, so white panels read as RAISED */
+  --ground-2: #EDEDF1;   /* wells, table header rows */
+  --panel:    #FFFFFF;   /* white cards + tables */
 
-  /* hairlines + surface washes */
-  --line:   rgba(0, 0, 0, 0.08);
-  --line-2: rgba(0, 0, 0, 0.14);
-  --tint:   rgba(0, 0, 0, 0.03);
-  --tint-2: rgba(0, 0, 0, 0.055);
+  /* hairlines + surface washes. NEVER put --line on a pastel wash: a black-alpha
+     hairline over a tint reads as grime. Use the hue's own --*-line instead. */
+  --line:   rgba(29, 29, 31, 0.07);
+  --line-2: rgba(29, 29, 31, 0.12);
+  --tint:   rgba(29, 29, 31, 0.03);
+  --tint-2: rgba(29, 29, 31, 0.055);
 
-  /* ink */
-  --ink:   #1D1D1F;   /* 15.8:1 */
-  --ink-2: #4E4E52;   /*  7.9:1  body + secondary text */
-  --ink-3: #6E6E73;   /*  5.3:1  small labels, still AA */
-  --ink-4: #8E8E93;   /*  3.4:1  DECORATIVE ONLY — large numerals, markers */
+  /* ink — ratios are measured on white / on the palest pastel wash below */
+  --ink:   #1D1D1F;   /* 16.8:1 white · 12.8:1 on a wash */
+  --ink-2: #4E4E52;   /*  8.3:1 white ·  6.3:1 on a wash — body + secondary */
+  --ink-3: #5E5E66;   /*  6.4:1 white ·  4.9:1 on a wash — small labels, AA */
+  --ink-4: #7C7C84;   /*  4.1:1 white ·  3.1:1 on a wash
+                          DECORATIVE ONLY — large numerals, markers */
 
   /* accents */
-  --accent:      #0071E3;   /* links, nav active, focus */
-  --accent-ink:  #0058B0;   /* blue TEXT sitting on a blue tint */
-  --accent-dim:  rgba(0, 113, 227, 0.10);
+  --accent:      #0071E3;   /* FILL — links, nav active, focus. 3.6:1 on a wash:
+                               never use it as small text. */
+  --accent-ink:  #0B5CBF;   /* blue TEXT — 6.4:1 white, 4.8:1 on any wash */
+  --accent-dim:  #DDEBFC;   /* opaque, so it survives on a tinted card */
   --gold:        #B0862B;   /* brand mark (decorative) */
   --gold-ink:    #7D5F1B;   /* gold TEXT — the mark colour fails AA at small sizes */
-  --gold-dim:    rgba(176, 134, 43, 0.12);
+  --gold-dim:    #F3E9D2;
 
-  /* status — vivid fills for bars, darkened twins for pill text */
+  /* ----------------------------------------------- pastel ramps (6 hues) --
+     Four tiers per hue, extending the fill-vs-ink split to colour surfaces:
+
+       --<hue>        vivid FILL   bars, dots, avatar fill   >= 3:1 on white
+       --<hue>-wash   card SURFACE                           luminance >= 0.711
+       --<hue>-line   hairline / rail / bar track            decorative
+       --<hue>-ink    TEXT on that wash                      >= 4.5:1
+
+     The wash luminance floor is what --ink-2 needs to stay at 6:1; it is also
+     why none of these can be more saturated than they are. Every --*-ink
+     clears 4.5:1 on EVERY wash here, not just its own — a mis-paired chip
+     from a hand-edited data.js still passes.
+     -------------------------------------------------------------------- */
+  --peach:         #DC7426;   --peach-wash:    #FEDBBF;
+  --peach-line:    #E5B691;   --peach-ink:     #9A3E0B;   /* 5.3:1 on wash */
+
+  --butter:        #AA8E1C;   --butter-wash:   #EFE1AF;
+  --butter-line:   #D8BE57;   --butter-ink:    #7A5200;   /* 5.3:1 on wash */
+
+  --mint:          #1BA572;   --mint-wash:     #B9ECD9;
+  --mint-line:     #4ED5A4;   --mint-ink:      #046A47;   /* 5.1:1 on wash */
+
+  --sky:           #4E93E2;   --sky-wash:      #CCE3FF;
+  --sky-line:      #A1C2E9;   --sky-ink:       #0A55B7;   /* 5.3:1 on wash */
+
+  --lavender:      #B274E8;   --lavender-wash: #EDD9FD;
+  --lavender-line: #D2B3ED;   --lavender-ink:  #7226C2;   /* 5.8:1 on wash */
+
+  --rose:          #E66493;   --rose-wash:     #FED6E5;
+  --rose-line:     #ECAEC4;   --rose-ink:      #B01449;   /* 5.3:1 on wash */
+
+  /* status — vivid fills for bars, OPAQUE tinted twins for pills.
+     The pill backgrounds used to be rgba(); on a pastel card they composited
+     with the card tint and dropped revisions/in-review to ~4.2:1 — and turned
+     orange-on-mint into olive. Opaque means one ratio on every ground. */
   --st-published:  #0071E3;
   --st-approved:   #34C759;
   --st-revisions:  #FF9500;
   --st-review:     #FFB700;
   --st-notstarted: #D2D2D7;
 
-  --st-approved-ink:  #16682F;   /* dark enough on the recessed version-row tint */
-  --st-revisions-ink: #9A4E00;
-  --st-review-ink:    #8A5A00;
+  --st-approved-bg:    #DFF3E4;  --st-approved-ink:   #125E2A;  /* 6.8:1 */
+  --st-revisions-bg:   #FFEDD2;  --st-revisions-ink:  #8F4700;  /* 6.0:1 */
+  --st-review-bg:      #FFF0C9;  --st-review-ink:     #805200;  /* 5.9:1 */
+  --st-notstarted-bg:  #EDEDF1;  --st-notstarted-ink: #5E5E66;  /* 5.5:1 */
 
-  /* elevation */
-  --shadow:    0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
-  --shadow-lg: 0 2px 4px rgba(0,0,0,.04), 0 14px 40px rgba(0,0,0,.08);
+  /* A pill body is only ~1.1:1 against a wash — without an edge it dissolves
+     into the card. Drawn as an inset shadow so the box model is untouched. */
+  --st-approved-edge:   #A9DEB8;
+  --st-revisions-edge:  #F0D2A2;
+  --st-review-edge:     #EFD892;
+  --st-notstarted-edge: #DCDCE2;
 
-  /* geometry — Apple runs generous */
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 18px;
+  --track: #E4E3EA;   /* progress-bar trough */
+
+  /* elevation — low alpha, wide blur, NEGATIVE spread so the shadow sits under
+     the card instead of haloing it. --shadow-glow reads a per-card --glow
+     (the hue's ink at ~30%), which is what makes a pastel card look like it is
+     floating in its own colour rather than sitting in grey. */
+  --shadow-xs:   0 1px 2px rgba(29,29,31,.04);
+  --shadow-sm:   0 2px 4px rgba(29,29,31,.03), 0 8px 18px -8px rgba(29,29,31,.10);
+  --shadow:      0 2px 6px rgba(29,29,31,.03), 0 16px 32px -14px rgba(29,29,31,.13);
+  --shadow-lg:   0 4px 10px rgba(29,29,31,.04), 0 30px 60px -20px rgba(29,29,31,.17);
+  --shadow-glow: 0 2px 6px rgba(29,29,31,.03),
+                 0 20px 38px -18px var(--glow, rgba(29,29,31,.16));
+
+  /* geometry — the pastel look runs rounder than the old Apple restraint */
+  --r-xs:  8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
   --r-pill: 980px;
 
   --pad:    clamp(1.25rem, 3.2vw, 2rem);
@@ -88,17 +144,19 @@ body {
   overflow-x: hidden;
 }
 
-/* one very soft wash at the top — the only atmosphere on white */
+/* Atmosphere behind the cards. Tinted to the palette's own hues — the old
+   blue/gold wash under-lit every pastel card and fought the peach ones. */
 body::before {
   content: "";
   position: fixed;
   inset: 0 0 auto;
-  height: 60vh;
+  height: 72vh;
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(70vw 40vh at 15% -10%, rgba(0, 113, 227, 0.045), transparent 65%),
-    radial-gradient(60vw 36vh at 92% -6%, rgba(176, 134, 43, 0.04), transparent 62%);
+    radial-gradient(72vw 44vh at 12% -12%, rgba(178, 116, 232, 0.13), transparent 66%),
+    radial-gradient(64vw 38vh at 88% -8%,  rgba(220, 116, 38, 0.10), transparent 64%),
+    radial-gradient(52vw 34vh at 52% -14%, rgba(78, 147, 226, 0.09), transparent 62%);
 }
 
 #page { position: relative; z-index: 1; }
@@ -124,8 +182,9 @@ a { color: inherit; }
    (a table, a long token) push its container past the viewport. Every direct
    item of a grid here is allowed to shrink instead. */
 .dash > *, .dash__side > *, .miniset > *, .serieslist > *,
-.rules > *, .figs > *, .swatches > *, .updates > *, .ecards > * { min-width: 0; }
-.rule__body, .series__names, .update__list { min-width: 0; }
+.rules > *, .figs > *, .swatches > *, .todos > *, .ecards > *,
+.todo__eps > *, .todo__groups > * { min-width: 0; }
+.rule__body, .series__names, .todo__id { min-width: 0; }
 
 /* visually hidden, still read by screen readers and still focusable */
 .sr-only {
@@ -313,25 +372,36 @@ a { color: inherit; }
 }
 @media (max-width: 900px) { .dash { grid-template-columns: 1fr; } }
 
+/* A card is white by default; a `--wash` makes it a pastel card, and then the
+   black-alpha hairline comes off and the shadow picks up the hue via --glow. */
 .card {
   position: relative;
-  background: var(--panel);
+  background: var(--wash, var(--panel));
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   padding: var(--pad);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-glow);
 }
+.card[style*="--wash"], .card--washed { border-color: transparent; }
 
 /* --- overall card --- */
-.overall { display: flex; flex-direction: column; gap: clamp(1.75rem, 4vw, 2.5rem); }
+.overall {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  border-radius: var(--r-xl);
+  --wash: var(--butter-wash);
+  --glow: rgba(122, 82, 0, .30);
+  border-color: transparent;
+}
 
 .overall__glow {
   position: absolute;
   top: -55%; right: -18%;
   width: 62%; aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 113, 227, 0.07), transparent 68%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.62), transparent 68%);
   pointer-events: none;
 }
 
@@ -349,7 +419,7 @@ a { color: inherit; }
 }
 .overall__num .of {
   font-size: clamp(1.4rem, 4vw, 2.3rem);
-  color: var(--ink-4);
+  color: var(--ink-3);   /* 22px/500 is not "large text" — it needs the full 4.5:1 */
   font-weight: 500;
 }
 
@@ -357,33 +427,21 @@ a { color: inherit; }
   font-size: 0.86rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--accent);
+  color: var(--butter-ink);   /* --accent is a FILL: 3.6:1 here, it would fail */
   margin-top: 0.35rem;
 }
 
 /* --- right column stack --- */
-.dash__side { display: grid; gap: 1rem; grid-template-rows: auto 1fr; }
-
-.kpi { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.kpi__num {
-  font-weight: 600;
-  font-size: clamp(2.6rem, 7vw, 3.6rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-.kpi__lbl {
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--ink-3);
-  text-align: right;
-  max-width: 16ch;
-  line-height: 1.4;
-}
-.kpi__lbl .dot { display: inline-block; background: var(--st-review); margin-right: 0.4rem; }
+.dash__side { display: grid; gap: 1rem; }
 
 /* --- per-series mini cards --- */
 .miniset { display: grid; gap: 0.6rem; align-content: start; }
 
+/* Each mini wears its OWN series wash — the same --accent-soft the series
+   accordion and its episode cards use, so the colour means "series N"
+   everywhere it appears. Never pair an arbitrary accent with an arbitrary
+   wash: the pairs below are the ones whose text contrast was measured
+   (S1 copper on peach 4.6:1, S2 blue on sky 6.1:1, S3 grey on grey 6.4:1). */
 .mini {
   position: relative;
   display: grid;
@@ -391,17 +449,15 @@ a { color: inherit; }
   align-items: center;
   gap: 0.4rem 1rem;
   padding: 0.85rem 1rem 0.85rem 1.15rem;
-  background: var(--ground-2);
+  background: var(--accent-soft, var(--ground-2));
   border: 1px solid transparent;
-  border-radius: var(--r-md);
+  border-radius: var(--r-sm);
   text-decoration: none;
-  transition: background 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .mini:hover {
-  background: #fff;
-  box-shadow: var(--shadow);
-  border-color: var(--line);
-  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
 }
 .mini::before {
   content: "";
@@ -420,7 +476,7 @@ a { color: inherit; }
 .mini__name span {
   font-family: var(--f-mono);
   font-size: 0.66rem;
-  color: var(--ink-4);
+  color: var(--ink-3);   /* --ink-4 is decorative and fails at 0.66rem on a wash */
   margin-right: 0.55rem;
 }
 .mini__count {
@@ -439,7 +495,7 @@ a { color: inherit; }
   height: 6px;
   border-radius: var(--r-pill);
   overflow: hidden;
-  background: #E8E8ED;
+  background: var(--track);
   gap: 1.5px;
 }
 .bar--lg { height: 10px; gap: 2px; }
@@ -476,63 +532,163 @@ a { color: inherit; }
   vertical-align: 0;
 }
 
-/* ================================================================ updates = */
-.updates { display: grid; gap: 0.7rem; }
+/* ============================================================== to-do cards =
+   One card per person, side by side. Each card wears a hue from the pastel
+   ramp; the episode chips inside it are the actual to-do items and link
+   straight to that episode's cut.
 
-.update {
+   A person card and a series card must never be confused, so colour is not
+   the only signal: a person carries a round initial avatar, a series carries
+   the 4px left rail plus its "Series N" badge.
+   ========================================================================== */
+.todos {
   display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 0 1.75rem;
-  padding: 1.15rem 1.35rem;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow);
-}
-.update--latest {
-  border-color: rgba(176, 134, 43, 0.32);
-  background: linear-gradient(180deg, rgba(176, 134, 43, 0.05), transparent 70%), #fff;
+  grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
+  gap: 0.9rem;
+  align-items: start;
 }
 
-.update__date {
-  font-family: var(--f-mono);
-  font-size: 0.78rem;
-  color: var(--ink-3);
-  padding-top: 0.1rem;
-}
-.update--latest .update__date { color: var(--gold-ink); }
+.todo {
+  --wash: var(--ground-2);
+  --tone: var(--ink);
+  --tone-line: var(--line-2);
+  --glow: rgba(29, 29, 31, .14);
 
-.update__tag {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-family: var(--f-ui);
-  font-size: 0.62rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  padding: clamp(1.15rem, 2.4vw, 1.5rem);
+  background: var(--wash);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-glow);
+}
+
+.todo--lavender { --wash: var(--lavender-wash); --tone: var(--lavender-ink); --tone-line: var(--lavender-line); --glow: rgba(114,  38, 194, .30); }
+.todo--mint     { --wash: var(--mint-wash);     --tone: var(--mint-ink);     --tone-line: var(--mint-line);     --glow: rgba(  4, 106,  71, .30); }
+.todo--rose     { --wash: var(--rose-wash);     --tone: var(--rose-ink);     --tone-line: var(--rose-line);     --glow: rgba(176,  20,  73, .30); }
+.todo--peach    { --wash: var(--peach-wash);    --tone: var(--peach-ink);    --tone-line: var(--peach-line);    --glow: rgba(154,  62,  11, .30); }
+.todo--butter   { --wash: var(--butter-wash);   --tone: var(--butter-ink);   --tone-line: var(--butter-line);   --glow: rgba(122,  82,   0, .30); }
+.todo--sky      { --wash: var(--sky-wash);      --tone: var(--sky-ink);      --tone-line: var(--sky-line);      --glow: rgba( 10,  85, 183, .30); }
+
+/* --- card head: avatar · name/role · count --- */
+.todo__head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.todo__avatar {
+  flex: none;
+  width: 2.4rem; height: 2.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--tone);
+  color: #fff;              /* >= 6.6:1 on every --tone in the ramp */
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.14rem 0.55rem;
-  border: 1px solid rgba(176, 134, 43, 0.4);
-  border-radius: var(--r-pill);
-  color: var(--gold-ink);
+  letter-spacing: 0;
 }
 
-.update__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.75rem; }
-.update__item { display: flex; gap: 0.75rem; align-items: baseline; }
-.update__owner {
+.todo__id { display: flex; flex-direction: column; line-height: 1.25; }
+.todo__name {
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.todo__role { font-size: 0.74rem; color: var(--ink-3); }
+
+.todo__count {
+  margin-left: auto;
   flex: none;
   font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  color: #fff;
-  background: var(--ink);
-  padding: 0.2rem 0.6rem;
+  color: var(--tone);
+  background: rgba(255, 255, 255, 0.66);
+  padding: 0.26rem 0.62rem;
   border-radius: var(--r-pill);
+  white-space: nowrap;
 }
-.update__text { color: var(--ink); font-size: 0.95rem; }
 
-@media (max-width: 620px) {
-  .update { grid-template-columns: 1fr; gap: 0.9rem; }
-  .update__tag { margin-top: 0; margin-left: 0.6rem; }
+/* --- task groups --- */
+.todo__groups { display: grid; gap: 1rem; }
+
+.todo__task {
+  margin: 0 0 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+.todo__task span {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  text-transform: none;
+}
+
+.todo__eps { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* --- the episode buttons ---
+   A real <a>, so it is keyboard reachable — unlike the is-linked/data-href
+   rows and cards, which are click-only. Anything that is not a link at all
+   renders as .epchip--dead: same size, no affordance. */
+.epchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.34rem 0.66rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--tone-line);
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease),
+              transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+.epchip:hover {
+  background: var(--tone);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.epchip:hover i { background: #fff; }
+
+/* the dot mirrors the episode's own status, so a chip stays honest when the
+   status is edited in data.js */
+.epchip i {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--st-notstarted);
+  transition: background 0.18s var(--ease);
+}
+.epchip--published   i { background: var(--st-published); }
+.epchip--approved    i { background: var(--st-approved); }
+.epchip--revisions   i { background: var(--st-revisions); }
+.epchip--in-review   i { background: var(--st-review); }
+.epchip--not-started i { background: var(--st-notstarted); }
+
+/* nothing to open yet — dashed, recessed, not interactive */
+.epchip--dead {
+  background: transparent;
+  border-style: dashed;
+  color: var(--ink-2);   /* 6.3:1 on any wash */
+}
+.epchip--dead:hover { background: transparent; color: var(--ink-2); transform: none; box-shadow: none; }
+.epchip--dead:hover i { background: var(--st-notstarted); }
+
+/* nobody has anything assigned — better than an empty card */
+.todo__empty {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink-2);
 }
 
 /* =============================================================== accordion */
@@ -546,12 +702,15 @@ a { color: inherit; }
   position: relative;
   box-shadow: var(--shadow);
 }
+/* The rail is inset top and bottom: at --r-lg = 24px a full-height bar would
+   poke out through the rounded corners. Same trick as .mini::before. */
 .series::before {
   content: "";
   position: absolute;
-  left: 0; top: 0; bottom: 0;
+  left: 0; top: 14px; bottom: 14px;
   width: 4px;
-  background: var(--accent-series);
+  border-radius: 0 4px 4px 0;
+  background: var(--accent-series, var(--ink-4));
   z-index: 1;
 }
 
@@ -562,21 +721,21 @@ a { color: inherit; }
   align-items: center;
   gap: 0.3rem 1.35rem;
   padding: 1.3rem clamp(1rem, 3vw, 1.75rem);
-  background: none;
+  background: var(--accent-soft, var(--ground-2));
   border: 0;
   color: inherit;
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background 0.25s var(--ease);
+  transition: filter 0.25s var(--ease);
 }
-.series__head:hover { background: var(--tint); }
+.series__head:hover { filter: brightness(0.97); }
 
 .series__no {
   font-family: var(--f-mono);
   font-size: 0.68rem;
   color: var(--accent-series);
-  background: var(--accent-soft, var(--ground-2));
+  background: var(--panel);   /* the head already wears --accent-soft */
   border-radius: var(--r-pill);
   padding: 0.3rem 0.75rem;
   white-space: nowrap;
@@ -608,7 +767,7 @@ a { color: inherit; }
   color: var(--ink);
 }
 .series__count b { color: var(--accent-series); font-weight: 600; }
-.series__of { color: var(--ink-4); }
+.series__of { color: var(--ink-3); }   /* 1rem mono is body text, not "large" */
 .series__statlbl {
   font-size: 0.68rem;
   font-weight: 500;
@@ -642,7 +801,7 @@ a { color: inherit; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--st-revisions-ink);
-  background: rgba(255, 149, 0, 0.12);
+  background: var(--st-revisions-bg);
   border-radius: var(--r-pill);
   padding: 0.14rem 0.5rem;
   margin-left: 0.6rem;
@@ -763,11 +922,35 @@ a { color: inherit; }
 }
 .pill i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
 
-.pill--published   { color: #FFFFFF;                 background: var(--st-published); }
-.pill--approved    { color: var(--st-approved-ink);  background: rgba(52, 199, 89, 0.14); }
-.pill--revisions   { color: var(--st-revisions-ink); background: rgba(255, 149, 0, 0.14); }
-.pill--in-review   { color: var(--st-review-ink);    background: rgba(255, 183, 0, 0.18); }
-.pill--not-started { color: var(--ink-3);            background: var(--ground-2); }
+/* Opaque fills + an inset edge. The fills used to be rgba(), which composited
+   with whatever was behind them — fine on white, but on a pastel episode card
+   revisions/in-review fell to ~4.2:1 and changed hue (orange over mint reads
+   olive). The edge is drawn as an inset shadow so the box model is untouched;
+   a real border would reflow the table. */
+.pill--published {
+  color: #FFFFFF;
+  background: var(--st-published);
+}
+.pill--approved {
+  color: var(--st-approved-ink);
+  background: var(--st-approved-bg);
+  box-shadow: inset 0 0 0 1px var(--st-approved-edge);
+}
+.pill--revisions {
+  color: var(--st-revisions-ink);
+  background: var(--st-revisions-bg);
+  box-shadow: inset 0 0 0 1px var(--st-revisions-edge);
+}
+.pill--in-review {
+  color: var(--st-review-ink);
+  background: var(--st-review-bg);
+  box-shadow: inset 0 0 0 1px var(--st-review-edge);
+}
+.pill--not-started {
+  color: var(--st-notstarted-ink);
+  background: var(--st-notstarted-bg);
+  box-shadow: inset 0 0 0 1px var(--st-notstarted-edge);
+}
 
 /* ------------------------------------------------- version rows + verdicts */
 
@@ -817,9 +1000,11 @@ a { color: inherit; }
 .vd__ic { display: inline-grid; place-items: center; flex: none; }
 .vd__ic svg { width: 11px; height: 11px; display: block; }
 
-.vd--approved  { color: var(--st-approved-ink);  background: rgba(52, 199, 89, 0.14); }
-.vd--revisions { color: var(--st-revisions-ink); background: rgba(255, 149, 0, 0.14); }
-.vd--pending   { color: var(--ink-3);            background: var(--ground-2); }
+/* opaque for the same reason as the pills — these also land on the .vrow tint
+   and, in Cards view, on a pastel episode card */
+.vd--approved  { color: var(--st-approved-ink);   background: var(--st-approved-bg); }
+.vd--revisions { color: var(--st-revisions-ink);  background: var(--st-revisions-bg); }
+.vd--pending   { color: var(--st-notstarted-ink); background: var(--st-notstarted-bg); }
 
 /* the band that covers the checkboxes once approved / published */
 .band {
@@ -837,7 +1022,7 @@ a { color: inherit; }
 }
 .band--ready {
   color: var(--st-approved-ink);
-  background: rgba(52, 199, 89, 0.14);
+  background: var(--st-approved-bg);
 }
 .band--published {
   color: var(--accent-ink);
@@ -929,7 +1114,7 @@ a { color: inherit; }
 .viewtoggle button[aria-pressed="true"] {
   color: var(--ink);
   background: var(--panel);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-xs);
 }
 
 /* Only one of the two lives at a time — scoped to .serieslist so the .scroll-x
@@ -945,22 +1130,24 @@ a { color: inherit; }
   border-top: 1px solid var(--line);
 }
 
+/* The card wears its series' wash, so a glance at a card says which series it
+   belongs to without reading the header it is nested under. */
 .ecard {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   padding: 1rem 1.05rem;
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
   border-radius: var(--r-md);
-  background: var(--panel);
+  background: var(--accent-soft, var(--ground-2));
   transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease),
               transform 0.22s var(--ease);
 }
 .ecard.is-linked { cursor: pointer; }
 .ecard.is-linked:hover {
   border-color: var(--accent-series, var(--line-2));
-  box-shadow: var(--shadow);
-  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
 }
 
 /* An episode with no link has nothing to open yet, so its card recedes and the
@@ -980,6 +1167,20 @@ a { color: inherit; }
 
 .ecard__top { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
 
+/* On a card the episode number is the headline — it is what you scan for.
+   Bigger and bolder than in the table, where the title carries the row. */
+.ecard .ep {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);   /* 12.8:1 on any wash — was --ink-3 at table size */
+}
+.ecard .ep--intro {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-series);
+}
+
 .ecard__ttl {
   margin: 0;
   font-size: 0.95rem;
@@ -990,18 +1191,24 @@ a { color: inherit; }
 
 .ecard__meta { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-/* the latest cut, sitting below a hairline like a card footer */
+/* The latest cut, sitting below a hairline like a card footer.
+   `margin-top: auto` is load-bearing: grid rows stretch cards to equal height,
+   and without it the slack lands in .ecard__ttl (which is flex:1), so footers
+   drift to different heights across a row and the grid looks wobbly. */
 .ecard__foot {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.45rem 0.6rem;
+  margin-top: auto;
   padding-top: 0.6rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
 }
 /* the └ connector only means something in the indented table */
 .ecard .vbadge::before { display: none; }
 .ecard .checks { justify-content: flex-start; }
+/* the badge's default wash IS the card's background here — lift it to white */
+.ecard .vbadge, .ecard .linkchip { background: var(--panel); }
 
 @media (max-width: 560px) {
   .ecards { grid-template-columns: 1fr; }
@@ -1047,7 +1254,7 @@ a { color: inherit; }
 .rule__body p { margin: 0 0 0.85rem; }
 .rule__body strong { color: var(--ink); font-weight: 600; }
 .rule__body a {
-  color: var(--accent);
+  color: var(--accent-ink);   /* --accent is a fill; as 0.95rem text it is 4.7:1 */
   text-decoration: none;
   font-weight: 500;
 }
@@ -1073,10 +1280,11 @@ a { color: inherit; }
   line-height: 1.6;
 }
 .callout__ic { flex: none; font-size: 0.9rem; line-height: 1.6; }
-.callout--danger { color: #8C2A10; background: rgba(255, 59, 48, 0.08); }
-.callout--danger .callout__ic { color: #D6301F; }
-.callout--warn   { color: var(--st-revisions-ink); background: rgba(255, 149, 0, 0.10); }
-.callout--warn .callout__ic { color: #C96A00; }
+/* opaque, like the pills — these sit on both white and washed panels */
+.callout--danger { color: #8C2A10; background: #FFEFEE; }
+.callout--danger .callout__ic { color: #C42A18; }
+.callout--warn   { color: var(--st-revisions-ink); background: var(--st-revisions-bg); }
+.callout--warn .callout__ic { color: var(--st-revisions-ink); }
 .callout--info   { color: var(--ink-2); background: var(--ground-2); }
 .callout--info .callout__ic { color: var(--ink-3); }
 .callout strong { color: inherit; font-weight: 700; }
@@ -1098,7 +1306,7 @@ a { color: inherit; }
 .spec td:first-child { color: var(--ink); font-weight: 500; }
 .spec td { color: var(--ink-2); }
 .spec tr:last-child td { border-bottom: 0; }
-.spec .num { font-family: var(--f-mono); color: var(--accent); white-space: nowrap; }
+.spec .num { font-family: var(--f-mono); color: var(--accent-ink); white-space: nowrap; }
 
 .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 

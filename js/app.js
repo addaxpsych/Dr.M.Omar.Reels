@@ -31,6 +31,30 @@
     return n === "intro" ? "Intro" : "Ep " + String(n).padStart(2, "0");
   }
 
+  /* ------------------------------------------------------- episode index --
+     `todos` in data.js names episodes by (series number, episode number) and
+     nothing else. This resolves those pairs back to the real episode object,
+     so a to-do chip's link, title and status always come from the same place
+     the tables read them from and cannot drift.                             */
+
+  let EP_INDEX = null;
+
+  function buildEpIndex() {
+    EP_INDEX = new Map();
+    PROJECT.series.forEach(s => {
+      s.episodes.forEach(ep => { EP_INDEX.set(s.number + ":" + ep.n, ep); });
+    });
+  }
+
+  function findEpisode(seriesNo, n) {
+    const ep = EP_INDEX.get(seriesNo + ":" + n);
+    if (!ep) {
+      console.warn("todos in data.js points at an episode that does not exist:",
+                   "Series " + seriesNo, epLabel(n));
+    }
+    return ep || null;
+  }
+
   /** Count episodes by status; every total on the page derives from this. */
   function tally(episodes) {
     const counts = Object.create(null);
@@ -209,6 +233,66 @@
     </article>`;
   }
 
+  /* --------------------------------------------------------- to-do cards --
+     One card per person. Every episode assigned to them becomes a button that
+     opens that episode's cut directly.                                      */
+
+  const TONES = ["lavender", "mint", "rose", "peach", "butter", "sky"];
+
+  /** One episode button. A real <a> when there is something to open, so it is
+      keyboard reachable — unlike the is-linked/data-href rows and cards, which
+      are click-only. Deliberately does NOT reuse that contract. */
+  function epChipHTML(seriesNo, n) {
+    const ep = findEpisode(seriesNo, n);
+    if (!ep) return "";
+
+    const label = esc(epLabel(ep.n));
+    const status = esc(ep.status);
+    const meta = STATUS_META[ep.status];
+    const statusLabel = meta ? meta.label : ep.status;
+
+    /* the title is Arabic on almost every episode, so it goes in the tooltip
+       rather than in the chip — the chip has to stay one line wide */
+    const desc = esc(`Series ${seriesNo} ${epLabel(ep.n)} — ${ep.title} · ${statusLabel}`);
+
+    if (!ep.link) {
+      return `<span class="epchip epchip--${status} epchip--dead" title="${desc} · no link yet">
+        <i></i>${label}</span>`;
+    }
+    return `<a class="epchip epchip--${status}" href="${esc(ep.link)}"
+               target="_blank" rel="noopener noreferrer"
+               title="${desc}" aria-label="${desc}"><i></i>${label}</a>`;
+  }
+
+  function todoHTML(person) {
+    const tasks = Array.isArray(person.tasks) ? person.tasks : [];
+    const tone = TONES.indexOf(person.tone) > -1 ? person.tone : "";
+
+    /* counted, never stored — same rule as every other number on the page */
+    const count = tasks.reduce((sum, t) => sum + (t.eps ? t.eps.length : 0), 0);
+
+    const groups = tasks.map(t => `<section class="todo__group">
+        <p class="todo__task">${esc(t.label)} <span>Series ${esc(t.series)}</span></p>
+        <div class="todo__eps">${(t.eps || []).map(n => epChipHTML(t.series, n)).join("")}</div>
+      </section>`).join("");
+
+    const body = count
+      ? `<div class="todo__groups">${groups}</div>`
+      : `<p class="todo__empty">Nothing assigned right now.</p>`;
+
+    return `<article class="todo ${tone ? "todo--" + tone : ""}">
+      <header class="todo__head">
+        <span class="todo__avatar" aria-hidden="true">${esc(person.person.charAt(0))}</span>
+        <span class="todo__id">
+          <span class="todo__name">${esc(person.person)}</span>
+          <span class="todo__role">${esc(person.role || "")}</span>
+        </span>
+        <span class="todo__count">${count} to do</span>
+      </header>
+      ${body}
+    </article>`;
+  }
+
   /* ------------------------------------------------------------ render -- */
 
   function render() {
@@ -218,6 +302,7 @@
     }
 
     const grandTotal = assertTotals();
+    buildEpIndex();
 
     /* --- header meta --- */
     const lu = $("#lastUpdated");
@@ -232,7 +317,6 @@
     $("#ovPct").textContent = Math.round((overall.cleared / grandTotal) * 100);
     $("#ovBar").innerHTML = barHTML(overall.counts, grandTotal);
     $("#ovLegend").innerHTML = legendHTML(overall.counts);
-    $("#kpiReview").textContent = overall.counts["in-review"] || 0;
 
     /* --- per-series mini cards --- */
     $("#miniset").innerHTML = PROJECT.series.map(s => {
@@ -246,20 +330,8 @@
       </a>`;
     }).join("");
 
-    /* --- daily updates --- */
-    $("#updates").innerHTML = PROJECT.updates.map((u, i) => {
-      const items = u.items.map(it => `<li class="update__item">
-          ${it.owner ? `<span class="update__owner">${esc(it.owner)}</span>` : ""}
-          <span class="update__text">${esc(it.text)}</span>
-        </li>`).join("");
-      return `<article class="update ${i === 0 ? "update--latest" : ""}">
-        <div class="update__date">
-          ${esc(fmtDate(u.date) || u.date)}
-          ${i === 0 ? '<span class="update__tag">Latest</span>' : ""}
-        </div>
-        <ul class="update__list">${items}</ul>
-      </article>`;
-    }).join("");
+    /* --- to-do cards --- */
+    $("#todos").innerHTML = (PROJECT.todos || []).map(todoHTML).join("");
 
     /* --- series accordions --- */
     $("#serieslist").innerHTML = PROJECT.series.map((s, i) => {

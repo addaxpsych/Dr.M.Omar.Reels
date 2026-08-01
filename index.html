@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dr. M. Omar · Reels Project Management</title>
-<meta name="description" content="Delivery status for the 50-reel ophthalmology series — progress, review queue, daily updates and episode tracking.">
-<meta name="theme-color" content="#08090B">
+<meta name="description" content="Delivery status for the 50-reel ophthalmology series — who has what to do, progress, review queue and episode tracking.">
+<meta name="theme-color" content="#F7F6FA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/style.css">
@@ -33,17 +33,25 @@
 
   <h1 class="sr-only">Reels delivery dashboard</h1>
 
-  <!-- =================================================== dashboard ==== -->
-  <section class="shell section section--first" aria-labelledby="ov">
+  <!-- ======================================================= to-do ==== -->
+  <section class="shell section section--first" aria-labelledby="td">
     <p class="metaline" data-rise style="animation-delay:.04s">
       <span class="dot"></span>Last updated <b id="lastUpdated">—</b>
     </p>
-    <p class="eyebrow" id="ov" style="margin-top:1.5rem">Overview</p>
+    <div class="sectionhead" style="margin-top:1.5rem">
+      <p class="eyebrow" id="td">On everyone's plate</p>
+    </div>
+    <div class="todos" id="todos" data-rise style="animation-delay:.12s"></div>
+  </section>
+
+  <!-- =================================================== dashboard ==== -->
+  <section class="shell section" aria-labelledby="ov">
+    <p class="eyebrow" id="ov">Overview</p>
 
     <div class="dash">
 
       <!-- overall -->
-      <div class="card overall" data-rise style="animation-delay:.3s">
+      <div class="card overall" data-rise style="animation-delay:.22s">
         <div class="overall__glow" aria-hidden="true"></div>
         <div>
           <p class="eyebrow" style="margin-bottom:.9rem">Approved &amp; published</p>
@@ -61,24 +69,13 @@
 
       <!-- side stack -->
       <div class="dash__side">
-        <div class="card kpi kpi--review" data-rise style="animation-delay:.38s">
-          <span class="kpi__num" id="kpiReview">0</span>
-          <span class="kpi__lbl">Reels currently in review</span>
-        </div>
-
-        <div class="card" data-rise style="animation-delay:.46s">
+        <div class="card" data-rise style="animation-delay:.3s">
           <p class="eyebrow" style="margin-bottom:1rem">By series</p>
           <div class="miniset" id="miniset"></div>
         </div>
       </div>
 
     </div>
-  </section>
-
-  <!-- ===================================================== updates ==== -->
-  <section class="shell section" aria-labelledby="up">
-    <p class="eyebrow" id="up">Daily updates &amp; to-do</p>
-    <div class="updates" id="updates"></div>
   </section>
 
   <!-- ====================================================== series ==== -->

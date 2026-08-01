@@ -73,7 +73,8 @@ const PROJECT = {
       role: "Reviewer",
       tone: "lavender",
       tasks: [
-        { label: "Review", series: 1, eps: [6, 7, 8, 10, 11, 12, 13, 14] }
+        { label: "Review", series: 1, eps: [6, 7, 8, 10, 11, 12, 13, 14] },
+        { label: "Review", series: 3, eps: [2] }
       ]
     },
     {
@@ -245,7 +246,7 @@ const PROJECT = {
       episodes: [
         { n: 1, title: "قرار بسيط… خلّى عملية سهلة تتحول لزراعة قرنية", link: null, status: "not-started", versions: [] },
         { n: 2, title: "لما الإعلان يسبق الخبرة… المريض هو اللي يدفع الثمن", link: "https://f.io/mTk6uh0s", status: "in-review",
-          versions: [ { v: 1, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 3, title: "أخطر قرار… إزاي تختار أفضل دكتور عيون من الإنترنت؟", link: null, status: "not-started", versions: [] },
         { n: 4, title: "ليه سعر الفيمتوليزك بيختلف؟ الإجابة مش اللي في بالك", link: null, status: "not-started", versions: [] },
         { n: 5, title: "أهم 5 أسئلة قبل عملية الفيمتوليزك… الفرق بين نتيجة ممتازة ونتيجة عادية", link: null, status: "not-started", versions: [] },

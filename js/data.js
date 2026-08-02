@@ -106,7 +106,7 @@ const PROJECT = {
       role: "Video editor",
       tone: "rose",
       tasks: [
-        { label: "Remake", series: 1, eps: [7, 8, 9, 10, 11, 12, 13, 14] }
+        { label: "Remake", series: 1, eps: [8, 9, 10, 11, 12, 13, 14] }
       ]
     },
     {

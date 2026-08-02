@@ -58,6 +58,14 @@ const PROJECT = {
        role     the small grey line under it
        tone     card colour: lavender | mint | rose | peach | butter | sky
                 (these are CSS classes — see `.todo--*` in css/style.css)
+       note     OPTIONAL pinned message at the top of that person's card:
+                  { text: "...", series: 1, ep: 6 }
+                The chip after the sentence is looked up like any other chip,
+                so its link and status stay correct on their own. Only `text`
+                is hand-written — if you name a version in it ("V3"), you are
+                the one keeping that in step. Delete the whole `note` when the
+                message no longer applies. Its episode counts toward "N to do",
+                so do NOT also list it under `tasks`.
        tasks    one group per line of work:
                   label   what to do, e.g. "Review" / "Revisions" / "Remake"
                   series  the series NUMBER (1, 2, 3), not its id
@@ -72,8 +80,13 @@ const PROJECT = {
       person: "Hajar",
       role: "Reviewer",
       tone: "lavender",
+      note: {
+        text: "Hello Hajar — kindly check Ep 6 V3 in Series 1 for approval:",
+        series: 1,
+        ep: 6
+      },
       tasks: [
-        { label: "Review", series: 1, eps: [6, 7, 8, 10, 11, 12, 13, 14] },
+        { label: "Review", series: 1, eps: [7, 8, 10, 11, 12, 13, 14] },
         { label: "Review", series: 2, eps: [12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]

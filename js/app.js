@@ -268,17 +268,32 @@
     const tasks = Array.isArray(person.tasks) ? person.tasks : [];
     const tone = TONES.indexOf(person.tone) > -1 ? person.tone : "";
 
-    /* counted, never stored — same rule as every other number on the page */
-    const count = tasks.reduce((sum, t) => sum + (t.eps ? t.eps.length : 0), 0);
+    /* An optional pinned line at the top of the card: a sentence addressed to
+       that person, followed by the chip for the episode it is about. The chip
+       resolves through the episode index like every other chip, so the note's
+       link, title and status dot cannot drift from the tables — only the
+       prose is hand-written. */
+    const note = person.note;
+    const noteEp = note && note.series != null && note.ep != null
+      ? findEpisode(note.series, note.ep)
+      : null;
+    const noteHTML = note && note.text
+      ? `<p class="todo__note">${esc(note.text)}${noteEp ? " " + epChipHTML(note.series, note.ep) : ""}</p>`
+      : "";
+
+    /* counted, never stored — same rule as every other number on the page.
+       A note that points at an episode is a job too, so it counts as one. */
+    const count = tasks.reduce((sum, t) => sum + (t.eps ? t.eps.length : 0), 0)
+                + (noteEp ? 1 : 0);
 
     const groups = tasks.map(t => `<section class="todo__group">
         <p class="todo__task">${esc(t.label)} <span>Series ${esc(t.series)}</span></p>
         <div class="todo__eps">${(t.eps || []).map(n => epChipHTML(t.series, n)).join("")}</div>
       </section>`).join("");
 
-    const body = count
+    const body = groups
       ? `<div class="todo__groups">${groups}</div>`
-      : `<p class="todo__empty">Nothing assigned right now.</p>`;
+      : (count ? "" : `<p class="todo__empty">Nothing assigned right now.</p>`);
 
     return `<article class="todo ${tone ? "todo--" + tone : ""}">
       <header class="todo__head">
@@ -289,6 +304,7 @@
         </span>
         <span class="todo__count">${count} to do</span>
       </header>
+      ${noteHTML}
       ${body}
     </article>`;
   }

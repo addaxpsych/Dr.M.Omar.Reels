@@ -611,6 +611,24 @@ a { color: inherit; }
   white-space: nowrap;
 }
 
+/* --- pinned note: a sentence to that person, with the chip it is about ---
+   Opaque white, not a tint of the wash: the chip inside already sits on
+   --panel, and an alpha panel would composite differently on each of the six
+   card washes. --ink-2 is 8.3:1 on white. The rail is the only tone colour,
+   so the note reads as part of the card without competing with the avatar. */
+.todo__note {
+  margin: -0.35rem 0 0;
+  padding: 0.7rem 0.85rem;
+  background: var(--panel);
+  border-left: 3px solid var(--tone);
+  border-radius: var(--r-sm);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+/* the chip flows inline with the sentence and wraps with it */
+.todo__note .epchip { vertical-align: -0.15em; }
+
 /* --- task groups --- */
 .todo__groups { display: grid; gap: 1rem; }
 

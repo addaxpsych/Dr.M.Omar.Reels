@@ -274,17 +274,21 @@
        link, title and status dot cannot drift from the tables — only the
        prose is hand-written. */
     const note = person.note;
-    const noteEp = note && note.series != null && note.ep != null
-      ? findEpisode(note.series, note.ep)
-      : null;
+    /* `eps: [6, 7]` is the shape, but a lone `ep: 6` is accepted too so a
+       hand-edit of either kind renders instead of silently dropping a chip */
+    const noteRefs = note && note.series != null
+      ? (Array.isArray(note.eps) ? note.eps : note.ep != null ? [note.ep] : [])
+          .filter(n => findEpisode(note.series, n))
+      : [];
     const noteHTML = note && note.text
-      ? `<p class="todo__note">${esc(note.text)}${noteEp ? " " + epChipHTML(note.series, note.ep) : ""}</p>`
+      ? `<p class="todo__note">${esc(note.text)}${
+           noteRefs.map(n => " " + epChipHTML(note.series, n)).join("")}</p>`
       : "";
 
     /* counted, never stored — same rule as every other number on the page.
-       A note that points at an episode is a job too, so it counts as one. */
+       Each episode a note points at is a job too, so each one counts. */
     const count = tasks.reduce((sum, t) => sum + (t.eps ? t.eps.length : 0), 0)
-                + (noteEp ? 1 : 0);
+                + noteRefs.length;
 
     const groups = tasks.map(t => `<section class="todo__group">
         <p class="todo__task">${esc(t.label)} <span>Series ${esc(t.series)}</span></p>

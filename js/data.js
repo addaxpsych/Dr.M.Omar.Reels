@@ -59,13 +59,14 @@ const PROJECT = {
        tone     card colour: lavender | mint | rose | peach | butter | sky
                 (these are CSS classes — see `.todo--*` in css/style.css)
        note     OPTIONAL pinned message at the top of that person's card:
-                  { text: "...", series: 1, ep: 6 }
-                The chip after the sentence is looked up like any other chip,
-                so its link and status stay correct on their own. Only `text`
-                is hand-written — if you name a version in it ("V3"), you are
-                the one keeping that in step. Delete the whole `note` when the
-                message no longer applies. Its episode counts toward "N to do",
-                so do NOT also list it under `tasks`.
+                  { text: "...", series: 1, eps: [6, 7] }
+                One chip is added after the sentence per episode in `eps`, in
+                that order, each looked up like any other chip — so links and
+                statuses stay correct on their own. Only `text` is hand-written
+                — if you name a version in it ("V3"), you are the one keeping
+                that in step. Delete the whole `note` when the message no
+                longer applies. Its episodes count toward "N to do", so do NOT
+                also list them under `tasks`.
        tasks    one group per line of work:
                   label   what to do, e.g. "Review" / "Revisions" / "Remake"
                   series  the series NUMBER (1, 2, 3), not its id
@@ -81,12 +82,12 @@ const PROJECT = {
       role: "Reviewer",
       tone: "lavender",
       note: {
-        text: "Hello Hajar — kindly check Ep 6 V3 in Series 1 for approval:",
+        text: "Hello Hajar — kindly check Ep 6 V3 and Ep 7 V1 in Series 1 for approval:",
         series: 1,
-        ep: 6
+        eps: [6, 7]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [7, 8, 10, 11, 12, 13, 14] },
+        { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14] },
         { label: "Review", series: 2, eps: [12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
@@ -155,7 +156,8 @@ const PROJECT = {
                       { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } },
                       { v: 3, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } },
+                      { v: 1, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 8, title: "فيمتو سمايل برو… مش تطوير، دي ثورة", link: "https://f.io/cVeSSjU7", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 9,  title: "تصحيح النظر بالليزر من غير ما نلمس العين | Trans PRK", link: null, status: "not-started", versions: [] },

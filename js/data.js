@@ -74,6 +74,7 @@ const PROJECT = {
       tone: "lavender",
       tasks: [
         { label: "Review", series: 1, eps: [6, 7, 8, 10, 11, 12, 13, 14] },
+        { label: "Review", series: 2, eps: [12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
     },
@@ -138,7 +139,8 @@ const PROJECT = {
                       { v: 3, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
         { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
-                      { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+                      { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } },
+                      { v: 3, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 8, title: "فيمتو سمايل برو… مش تطوير، دي ثورة", link: "https://f.io/cVeSSjU7", status: "in-review",

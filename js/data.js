@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-02",
+  lastUpdated: "2026-08-04",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar", "Hossam"],
@@ -82,7 +82,7 @@ const PROJECT = {
       role: "Reviewer",
       tone: "lavender",
       note: {
-        text: "Hello Hajar — kindly check Ep 7 V1 in Series 1 for approval:",
+        text: "Hello Hajar — kindly check Ep 7 V2 in Series 1 for approval:",
         series: 1,
         eps: [7]
       },
@@ -156,7 +156,8 @@ const PROJECT = {
                       { v: 3, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
         { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } },
-                      { v: 1, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+                      { v: 1, reviews: { Hajar: "pending", Hossam: "pending" } },
+                      { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 8, title: "فيمتو سمايل برو… مش تطوير، دي ثورة", link: "https://f.io/cVeSSjU7", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
         { n: 9,  title: "تصحيح النظر بالليزر من غير ما نلمس العين | Trans PRK", link: null, status: "not-started", versions: [] },

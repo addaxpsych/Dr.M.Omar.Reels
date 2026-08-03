@@ -88,7 +88,6 @@ const PROJECT = {
       },
       tasks: [
         { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14] },
-        { label: "Review", series: 2, eps: [12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
     },

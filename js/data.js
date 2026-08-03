@@ -82,9 +82,9 @@ const PROJECT = {
       role: "Reviewer",
       tone: "lavender",
       note: {
-        text: "Hello Hajar — kindly check Ep 6 V3 and Ep 7 V1 in Series 1 for approval:",
+        text: "Hello Hajar — kindly check Ep 7 V1 in Series 1 for approval:",
         series: 1,
-        eps: [6, 7]
+        eps: [7]
       },
       tasks: [
         { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14] },
@@ -154,7 +154,7 @@ const PROJECT = {
         { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
                       { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } },
-                      { v: 3, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+                      { v: 3, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
         { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } },
                       { v: 1, reviews: { Hajar: "pending", Hossam: "pending" } } ] },

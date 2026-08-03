@@ -203,9 +203,9 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
         { n: 1, title: "إيه هي العدسات اللي بنزرعها داخل العين؟", link: null, status: "approved",
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
-        { n: 2, title: "أنواع العدسات داخل العين", link: null, status: "approved",
+        { n: 2, title: "أنواع العدسات داخل العين", link: "https://f.io/GbNr3Avf", status: "approved",
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
-        { n: 3, title: "العدسة العادية ولا العدسة المتقدمة؟ القرار مش بسيط", link: null, status: "approved",
+        { n: 3, title: "العدسة العادية ولا العدسة المتقدمة؟ القرار مش بسيط", link: "https://f.io/aDKDL6JU", status: "approved",
           versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
         { n: 4, title: "العدسة الترايفوكال أم العدسة ممتدة المجال؟ الحقيقة العلمية وراء الاختيار", link: "https://f.io/Ggs9JQoa", status: "in-review",
           versions: [

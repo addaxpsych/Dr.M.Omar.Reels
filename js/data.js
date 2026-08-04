@@ -88,6 +88,7 @@ const PROJECT = {
       },
       tasks: [
         { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14] },
+        { label: "Review", series: 2, eps: [4] },
         { label: "Review", series: 3, eps: [2] }
       ]
     },
@@ -212,7 +213,8 @@ const PROJECT = {
             { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
             { v: 3, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 4, reviews: { Hajar: "approved",  Hossam: "pending" } }
+            { v: 4, reviews: { Hajar: "approved",  Hossam: "pending" } },
+            { v: 5, reviews: { Hajar: "pending",   Hossam: "pending" } }
           ] },
         { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "in-review",
           versions: [

@@ -88,7 +88,7 @@ const PROJECT = {
       },
       tasks: [
         { label: "Review", series: 1, eps: [10, 11, 12, 13, 14] },
-        { label: "Review", series: 2, eps: [7, 8, 9, 10, 11, 12, 13, 14] },
+        { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
     },
@@ -192,9 +192,9 @@ const PROJECT = {
       episodes: [
         { n: "intro", title: "العدسات داخل العين — تبسيط علمي لقرار مهم", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
-        { n: 1, title: "إيه هي العدسات اللي بنزرعها داخل العين؟", link: null, status: "approved",
+        { n: 1, title: "إيه هي العدسات اللي بنزرعها داخل العين؟", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
-        { n: 2, title: "أنواع العدسات داخل العين", link: "https://f.io/GbNr3Avf", status: "approved",
+        { n: 2, title: "أنواع العدسات داخل العين", link: "https://f.io/GbNr3Avf", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 3, title: "العدسة العادية ولا العدسة المتقدمة؟ القرار مش بسيط", link: "https://f.io/aDKDL6JU", status: "approved",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
@@ -204,7 +204,7 @@ const PROJECT = {
             { v: 2, reviews: { Hajar: "revisions" } },
             { v: 3, reviews: { Hajar: "revisions" } },
             { v: 4, reviews: { Hajar: "approved" } },
-            { v: 5, reviews: { Hajar: "pending" } }
+            { v: 5, reviews: { Hajar: "approved" } }
           ] },
         { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "in-review",
           versions: [
@@ -220,21 +220,21 @@ const PROJECT = {
             { v: 4, reviews: { Hajar: "approved" } }
           ] },
         { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 9, title: "هل العدسة الأمريكية هي الأفضل فعلاً؟", link: "https://f.io/wmc9i0Wu", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 10, title: "هل ينفع أزرع عدسة من غير ما أشيل عدسة العين؟ (ICL)", link: "https://f.io/6P44-nPo", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 11, title: "هل ينفع نعمل زراعة عدسات مع الليزر؟ (Bioptics)", link: "https://f.io/edLllE2E", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 12, title: "في زراعة العدسات… كل التفاصيل بتفرق", link: "https://f.io/MQLMKoph", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 13, title: "بعد زراعة العدسات… هل ممكن النظر يضعف تاني؟", link: "https://f.io/7GstIi8Y", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 14, title: "الخلاصة… إزاي تختار صح؟", link: "https://f.io/TDPy1csj", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] }
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] }
       ]
     },
 

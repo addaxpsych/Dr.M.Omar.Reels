@@ -7,10 +7,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A static project-management site tracking the delivery of a 50-reel Arabic ophthalmology video series
 for Dr. Mohamed Omar Yousef. Two views:
 
-- `index.html` — dashboard: progress, review queue, daily updates, per-episode tables
+- `index.html` — dashboard: per-person to-do cards, overall + per-series progress, episode tables
 - `guidelines.html` — the brand/technical rules the video editor (Alaa) must follow
 
-Audience is a small mixed team: the doctor, two decision makers (Hajar, Hossam), and video editors.
+The dashboard has exactly three sections, in this order: `#todos`, the overview (`#ovBar`,
+`#miniset`), and `#serieslist`. `README.md` still documents a `PROJECT.updates` array and a "daily
+updates" feed — **that was removed**; nothing in `data.js` or `app.js` reads it. Trust this file.
+
+Audience is a small mixed team: the doctor, one decision maker (Hajar), and video editors.
 UI is English/LTR; all episode titles are Arabic and render RTL inline.
 
 ## Commands
@@ -22,6 +26,10 @@ python -m http.server 8000     # serve locally, then open http://localhost:8000
 node --check js/data.js        # syntax-check after hand-editing data
 node --check js/app.js
 ```
+
+`node --check` catches a broken edit but proves nothing about the numbers, because every count is
+derived at render — a data change that renders wrong is still valid JavaScript. Reach for the jsdom
+harness under **Verifying changes** for anything beyond a one-word status flip.
 
 Deployment: Cloudflare Pages, framework preset **None**, build command **empty**, output dir `/`.
 Every push to `main` redeploys. Remote is `github.com/addaxpsych/Dr.M.Omar.Reels`.
@@ -40,10 +48,15 @@ It defines four globals consumed by `js/app.js` (plain `<script>` tags, no modul
 | `STATUS_ORDER` | most-complete-first; drives progress-bar segment order |
 | `VERDICT_META` | per-reviewer verdict labels |
 
-**Every number on the dashboard is computed at load** by `tally()` in `app.js:35` — totals,
-percentages and bar widths are never stored. Do not introduce a hardcoded count anywhere.
-`assertTotals()` (`app.js:53`) warns in the console if a series' declared `total` drifts from its
-actual episode count; keep both in sync when adding or removing episodes.
+**Every number on the dashboard is computed at load** by `tally()` (`app.js`) — totals, percentages
+and bar widths are never stored. Do not introduce a hardcoded count anywhere. `assertTotals()`
+warns in the console if a series' declared `total` drifts from its actual episode count; keep both
+in sync when adding or removing episodes. (`index.html` hardcodes `50` in `#ovTotal` purely as
+pre-script placeholder text — `render()` overwrites it with the summed total.)
+
+`PROJECT.lastUpdated` is the one value nothing computes, and it is the easiest thing to forget in a
+data-only edit — it drives the "Last updated" line in the header. Set it to the current date
+whenever you change `data.js` on the owner's behalf.
 
 ### Per-person to-do cards, and the episode index
 
@@ -60,7 +73,25 @@ Two rules that are easy to break:
   keyboard reachable. **They deliberately do not use the `is-linked`/`data-href` contract**, which is
   click-only and unfocusable. An episode with no `link` yet renders as `.epchip--dead` — a `<span>`,
   not a dead anchor.
-- The "N to do" count on each card is summed from `eps` at render, like every other number here.
+- The "N to do" count on each card is summed at render, like every other number here.
+
+A person may also carry an optional **`note`** — a pinned sentence above their task groups, for
+addressing them directly ("kindly check Ep 7 V1 for approval"):
+
+```js
+note: { text: "Hello Hajar — kindly check Ep 7 V1 in Series 1 for approval:", series: 1, eps: [7] }
+```
+
+One chip is appended per entry in `eps`, in that order, each resolved through the same episode index
+— so only `text` is hand-written prose. Two consequences worth knowing before editing one:
+
+- **A version named in `text` ("V1") is the one thing that can drift**, because nothing derives it.
+  When you append a version or record a verdict, re-read any note that mentions that episode.
+- **Note episodes count toward "N to do"**, so an episode must not be listed in both `note.eps` and a
+  `tasks` group or it is counted twice. Moving an episode from a task group into the note leaves the
+  card's total unchanged — that is intended.
+
+`todoHTML()` also accepts a singular `ep:` for backwards compatibility; `eps` is the shape to write.
 
 Person colour comes from a `tone` slug (`lavender` / `mint` / `rose` / `peach` / `butter` / `sky`)
 that maps to a `.todo--*` class. This is **not** the series pattern: a series carries its own
@@ -75,9 +106,24 @@ Two levels, and they mean different things:
 
 - **Episode** has a `status` (`not-started` / `in-review` / `revisions` / `approved` / `published`).
   This is what the dashboard counts. `approved` and `published` are the two `cleared: true` states.
-- **Version** is one delivered cut: `{ v: 1, reviews: { Hajar: "approved", Hossam: "pending" } }`.
+- **Version** is one delivered cut: `{ v: 1, reviews: { Hajar: "approved" } }`.
   Verdicts are `pending` / `approved` / `revisions`. Versions are **appended, never overwritten** —
   the history is the point. Rendered as indented sub-rows beneath the episode.
+
+Nothing in the code derives one level from the other, so two conventions live only in the data and
+must be applied by hand:
+
+- **A verdict never moves the episode's `status` on its own.** Hajar approving the latest cut does
+  not make the episode `approved` — the owner advances the status deliberately, and until they do
+  the episode stays where it is. S1 Eps 4-7 and S2 Eps 5-6 all sit at `in-review` with an approved
+  latest cut; that is current and correct, not a stale edit to tidy up. Auto-advancing on a verdict
+  would silently inflate the cleared count.
+- **A superseded version keeps whatever verdict it had.** Appending V3 does not resolve V2, so a cut
+  can sit at `pending` forever once it has been replaced. That is a faithful record of who actually
+  looked at what, not a bug to tidy up — do not backfill verdicts nobody gave.
+
+Most episodes start at `v: 1`; the ones already in flight when versioning was introduced start at
+`v: 0`, so "the latest cut" means the last array element, never the highest `v`.
 
 Episodes that haven't started carry `versions: []`, so no sub-row is drawn. `link` sits on the
 **episode**, not the version — all versions of an episode share one review link (Frame.io or Google
@@ -186,12 +232,21 @@ check at minimum:
 
 - Counts still add up: episode totals per series, cleared count, in-review count, unique link count
 - Rendered row counts: episode rows + version rows, verdict chip counts by type
-- To-do integrity: every `{series, ep}` in `todos` resolves in the episode index, chip counts match
-  the data, and each chip's `href` and `epchip--<status>` class match its episode
+- To-do integrity: every episode referenced by a `tasks` group **or a `note`** resolves in the
+  episode index, chip counts match the data, each chip's `href` and `epchip--<status>` class match
+  its episode, and no episode is referenced twice on one card
 - No page-level horizontal overflow at 390px (`body.scrollWidth === 390`)
 - Contrast of any new text colour against its actual composited background
 
-Two things that will waste your time if you don't know them:
+Assert against `PROJECT` read back out of the window, not against numbers you typed into the
+harness — an expectation hardcoded to today's data becomes a false failure on the next data edit.
+
+Three things that will waste your time if you don't know them:
+
+- **jsdom has no `requestAnimationFrame`**, and `render()` ends by calling `animateBars()`, which
+  uses it. The throw escapes through your `dispatchEvent` call and looks like a page error, but the
+  DOM is already fully rendered — nothing after `animateBars()` is skipped. Shim it
+  (`w.requestAnimationFrame = cb => setTimeout(cb, 0)`) so a real error stays visible.
 
 - **jsdom leaves `document.readyState` at `"loading"`**, so `app.js` parks `render()` on
   `DOMContentLoaded` and nothing renders. Dispatch the event yourself. And `const PROJECT` is a

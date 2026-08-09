@@ -52,7 +52,7 @@ Each version carries one verdict per reviewer. Change the string:
 
 ```js
 versions: [
-  { v: 1, reviews: { Hajar: "approved", Hossam: "revisions" } }
+  { v: 1, reviews: { Hajar: "approved" } }
 ]
 ```
 
@@ -72,8 +72,8 @@ These are **display only** — the file is the source of truth, nobody clicks an
 
 ```js
 versions: [
-  { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } },
-  { v: 1, reviews: { Hajar: "pending",   Hossam: "pending" } }   // ← new cut
+  { v: 0, reviews: { Hajar: "revisions" } },
+  { v: 1, reviews: { Hajar: "pending"   } }   // ← new cut
 ]
 ```
 

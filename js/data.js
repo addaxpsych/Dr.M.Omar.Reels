@@ -14,13 +14,13 @@
 
    STATUS (the episode as a whole) must be exactly one of:
      "not-started"  hasn't started
-     "in-review"    sent for review, waiting on Hajar / Hossam
+     "in-review"    sent for review, waiting on Hajar
      "revisions"    working on revisions
      "approved"     signed off  ->  row shows "READY TO PUBLISH"
      "published"    live        ->  row shows "PUBLISHED"
 
    VERSIONS — each episode carries a list of cuts, oldest first.
-     { v: 1, reviews: { Hajar: "approved", Hossam: "pending" } }
+     { v: 1, reviews: { Hajar: "approved" } }
 
      `v` is a number, rendered as V0 / V1 / V2 …
      Each reviewer's verdict must be exactly one of:
@@ -43,7 +43,7 @@ const PROJECT = {
   lastUpdated: "2026-08-10",
 
   /* Order here = order the verdicts are listed on every version row. */
-  reviewers: ["Hajar", "Hossam"],
+  reviewers: ["Hajar"],
 
   /* --------------------------------------------------------------------------
      TO-DO  —  one card per person, shown side by side at the top of the page.
@@ -88,17 +88,8 @@ const PROJECT = {
       },
       tasks: [
         { label: "Review", series: 1, eps: [10, 11, 12, 13, 14] },
-        { label: "Review", series: 2, eps: [4, 7, 8, 9, 10, 11, 12, 13, 14] },
+        { label: "Review", series: 2, eps: [7, 8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
-      ]
-    },
-    {
-      person: "Hossam",
-      role: "Reviewer",
-      tone: "mint",
-      tasks: [
-        { label: "Review", series: 1, eps: [4, 5, 6, 7, 8, 10, 11, 12, 13, 14] },
-        { label: "Review", series: 2, eps: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] }
       ]
     },
     {
@@ -135,45 +126,45 @@ const PROJECT = {
       total: 26,
       episodes: [
         { n: "intro", title: "أسرار تصحيح الإبصار — تبسيط علمي لقرار مهم", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 1, title: "مش كل عمليات تصحيح النظر بالليزر واحد", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 2, title: "إزاي تاخد أفضل رؤية من عملية الليزر؟", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 3, title: "هل الليزر آمن فعلاً؟ وفيه مخاطرة؟", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 4, title: "الليزر بيصلح النظر إزاي؟", link: "https://f.io/UXNc-lOb", status: "in-review",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
-                      { v: 2, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } },
+                      { v: 2, reviews: { Hajar: "approved" } } ] },
         { n: 5, title: "هل كل مقاسات النظر اللي زي بعضها بيناسبها نفس عملية التصحيح؟", link: "https://f.io/dY_V6g1f", status: "in-review",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
-                      { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
-                      { v: 3, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } },
+                      { v: 2, reviews: { Hajar: "revisions" } },
+                      { v: 3, reviews: { Hajar: "approved" } } ] },
         { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "in-review",
-          versions: [ { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
-                      { v: 2, reviews: { Hajar: "pending", Hossam: "pending" } },
-                      { v: 3, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } },
+                      { v: 2, reviews: { Hajar: "pending" } },
+                      { v: 3, reviews: { Hajar: "approved" } } ] },
         { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } },
-                      { v: 1, reviews: { Hajar: "pending", Hossam: "pending" } },
-                      { v: 2, reviews: { Hajar: "approved", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } },
+                      { v: 1, reviews: { Hajar: "pending" } },
+                      { v: 2, reviews: { Hajar: "approved" } } ] },
         { n: 8, title: "فيمتو سمايل برو… مش تطوير، دي ثورة", link: "https://f.io/cVeSSjU7", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } },
-                      { v: 1, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } },
+                      { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 9,  title: "تصحيح النظر بالليزر من غير ما نلمس العين | Trans PRK", link: null, status: "not-started", versions: [] },
         { n: 10, title: "PRK vs LASIK… الحقيقة اللي محدش بيقولها", link: "https://f.io/Es98Ggut", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 11, title: "أعمل فيمتو سمايل ولا فيمتو ليزك؟ الفرق الحقيقي", link: "https://f.io/JL1xSn5z", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 12, title: "الأمان في عمليات الليزر… مين أأمن عملية؟", link: "https://f.io/hsMS_b-v", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 13, title: "كفاءة الرؤية بعد الليزك… السر في الـ Laser Profile", link: "https://f.io/WgFOUjwA", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 14, title: "الليزر التفصيلي ببصمة العين | Customized vs Standard", link: "https://f.io/z5WofLTh", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 15, title: "هل كل أجهزة الليزر زي بعض؟ ولا الفرق كبير", link: null, status: "not-started", versions: [] },
         { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: null, status: "not-started", versions: [] },
         { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: null, status: "not-started", versions: [] },
         { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: null, status: "not-started", versions: [] },
@@ -200,50 +191,50 @@ const PROJECT = {
       total: 15,
       episodes: [
         { n: "intro", title: "العدسات داخل العين — تبسيط علمي لقرار مهم", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 1, title: "إيه هي العدسات اللي بنزرعها داخل العين؟", link: null, status: "approved",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 2, title: "أنواع العدسات داخل العين", link: "https://f.io/GbNr3Avf", status: "approved",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 3, title: "العدسة العادية ولا العدسة المتقدمة؟ القرار مش بسيط", link: "https://f.io/aDKDL6JU", status: "approved",
-          versions: [ { v: 1, reviews: { Hajar: "approved", Hossam: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 4, title: "العدسة الترايفوكال أم العدسة ممتدة المجال؟ الحقيقة العلمية وراء الاختيار", link: "https://f.io/Ggs9JQoa", status: "in-review",
           versions: [
-            { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
-            { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 3, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 4, reviews: { Hajar: "approved",  Hossam: "pending" } },
-            { v: 5, reviews: { Hajar: "pending",   Hossam: "pending" } }
+            { v: 1, reviews: { Hajar: "revisions" } },
+            { v: 2, reviews: { Hajar: "revisions" } },
+            { v: 3, reviews: { Hajar: "revisions" } },
+            { v: 4, reviews: { Hajar: "approved" } },
+            { v: 5, reviews: { Hajar: "pending" } }
           ] },
         { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "in-review",
           versions: [
-            { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
-            { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 3, reviews: { Hajar: "approved",  Hossam: "pending" } }
+            { v: 1, reviews: { Hajar: "revisions" } },
+            { v: 2, reviews: { Hajar: "revisions" } },
+            { v: 3, reviews: { Hajar: "approved" } }
           ] },
         { n: 6, title: "إزاي تختار العدسة المناسبة ليك؟", link: "https://f.io/itPJNpsP", status: "in-review",
           versions: [
-            { v: 1, reviews: { Hajar: "revisions", Hossam: "revisions" } },
-            { v: 2, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 3, reviews: { Hajar: "revisions", Hossam: "pending" } },
-            { v: 4, reviews: { Hajar: "approved",  Hossam: "pending" } }
+            { v: 1, reviews: { Hajar: "revisions" } },
+            { v: 2, reviews: { Hajar: "revisions" } },
+            { v: 3, reviews: { Hajar: "revisions" } },
+            { v: 4, reviews: { Hajar: "approved" } }
           ] },
         { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
         { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
         { n: 9, title: "هل العدسة الأمريكية هي الأفضل فعلاً؟", link: "https://f.io/wmc9i0Wu", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
         { n: 10, title: "هل ينفع أزرع عدسة من غير ما أشيل عدسة العين؟ (ICL)", link: "https://f.io/6P44-nPo", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
         { n: 11, title: "هل ينفع نعمل زراعة عدسات مع الليزر؟ (Bioptics)", link: "https://f.io/edLllE2E", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
         { n: 12, title: "في زراعة العدسات… كل التفاصيل بتفرق", link: "https://f.io/MQLMKoph", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
         { n: 13, title: "بعد زراعة العدسات… هل ممكن النظر يضعف تاني؟", link: "https://f.io/7GstIi8Y", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] },
         { n: 14, title: "الخلاصة… إزاي تختار صح؟", link: "https://f.io/TDPy1csj", status: "revisions",
-          versions: [ { v: 0, reviews: { Hajar: "revisions", Hossam: "pending" } } ] }
+          versions: [ { v: 0, reviews: { Hajar: "revisions" } } ] }
       ]
     },
 
@@ -264,7 +255,7 @@ const PROJECT = {
       episodes: [
         { n: 1, title: "قرار بسيط… خلّى عملية سهلة تتحول لزراعة قرنية", link: null, status: "not-started", versions: [] },
         { n: 2, title: "لما الإعلان يسبق الخبرة… المريض هو اللي يدفع الثمن", link: "https://f.io/mTk6uh0s", status: "in-review",
-          versions: [ { v: 0, reviews: { Hajar: "pending", Hossam: "pending" } } ] },
+          versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 3, title: "أخطر قرار… إزاي تختار أفضل دكتور عيون من الإنترنت؟", link: null, status: "not-started", versions: [] },
         { n: 4, title: "ليه سعر الفيمتوليزك بيختلف؟ الإجابة مش اللي في بالك", link: null, status: "not-started", versions: [] },
         { n: 5, title: "أهم 5 أسئلة قبل عملية الفيمتوليزك… الفرق بين نتيجة ممتازة ونتيجة عادية", link: null, status: "not-started", versions: [] },

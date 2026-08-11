@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-10",
+  lastUpdated: "2026-08-11",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -170,7 +170,8 @@ const PROJECT = {
         { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: null, status: "not-started", versions: [] },
         { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 21, title: "أهم قرار قبل عملية الليزر لتصحيح النظر… اختيار الدكتور", link: null, status: "not-started", versions: [] },
+        { n: 21, title: "أهم قرار قبل عملية الليزر لتصحيح النظر… اختيار الدكتور", link: "https://f.io/fNNsCr36", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 22, title: "سعر عملية الليزك وتكلفة الفيمتو ليزك في مصر", link: null, status: "not-started", versions: [] },
         { n: 23, title: "سوبر ليزك؟ HD ليزك؟ ألترا ليزك… الحقيقة ورا الأسماء", link: null, status: "not-started", versions: [] },
         { n: 24, title: "ليه ناس كتير بتسافر مصر تعمل ليزر لتصحيح النظر؟", link: null, status: "not-started", versions: [] },

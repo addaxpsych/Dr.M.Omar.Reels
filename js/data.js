@@ -140,7 +140,7 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "revisions" } },
                       { v: 2, reviews: { Hajar: "revisions" } },
                       { v: 3, reviews: { Hajar: "approved" } } ] },
-        { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "in-review",
+        { n: 6, title: "ليه الفيمتو ليزك أفضل من الليزك؟", link: "https://f.io/AjJKfp-U", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } },
                       { v: 2, reviews: { Hajar: "pending" } },
                       { v: 3, reviews: { Hajar: "approved" } } ] },

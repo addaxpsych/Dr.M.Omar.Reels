@@ -87,7 +87,7 @@ const PROJECT = {
         eps: [8]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [10, 11, 12, 13, 14] },
+        { label: "Review", series: 1, eps: [10, 11, 12, 13, 14, 20, 21, 22, 23] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]

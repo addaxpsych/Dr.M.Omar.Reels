@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-12",
+  lastUpdated: "2026-08-13",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -174,7 +174,8 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 22, title: "سعر عملية الليزك وتكلفة الفيمتو ليزك في مصر", link: "https://f.io/MSrhumvB", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 23, title: "سوبر ليزك؟ HD ليزك؟ ألترا ليزك… الحقيقة ورا الأسماء", link: null, status: "not-started", versions: [] },
+        { n: 23, title: "سوبر ليزك؟ HD ليزك؟ ألترا ليزك… الحقيقة ورا الأسماء", link: "https://f.io/b08rtGJq", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 24, title: "ليه ناس كتير بتسافر مصر تعمل ليزر لتصحيح النظر؟", link: null, status: "not-started", versions: [] },
         /* Ep 25 is Ep 24 again, delivered in English. A Latin title renders LTR. */
         { n: 25, title: "Why do so many people travel to Egypt for laser vision correction?", link: null, status: "not-started", versions: [] }

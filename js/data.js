@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-13",
+  lastUpdated: "2026-08-14",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -87,7 +87,7 @@ const PROJECT = {
         eps: [8]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [10, 11, 12, 13, 14, 20, 21, 22, 23] },
+        { label: "Review", series: 1, eps: [10, 11, 12, 13, 14, 20, 21, 22, 23, 24] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
@@ -176,7 +176,8 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 23, title: "سوبر ليزك؟ HD ليزك؟ ألترا ليزك… الحقيقة ورا الأسماء", link: "https://f.io/b08rtGJq", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 24, title: "ليه ناس كتير بتسافر مصر تعمل ليزر لتصحيح النظر؟", link: null, status: "not-started", versions: [] },
+        { n: 24, title: "ليه ناس كتير بتسافر مصر تعمل ليزر لتصحيح النظر؟", link: "https://f.io/JSnFBUjY", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         /* Ep 25 is Ep 24 again, delivered in English. A Latin title renders LTR. */
         { n: 25, title: "Why do so many people travel to Egypt for laser vision correction?", link: null, status: "not-started", versions: [] }
       ]

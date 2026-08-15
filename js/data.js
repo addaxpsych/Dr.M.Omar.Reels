@@ -144,7 +144,7 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "revisions" } },
                       { v: 2, reviews: { Hajar: "pending" } },
                       { v: 3, reviews: { Hajar: "approved" } } ] },
-        { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "in-review",
+        { n: 7, title: "فيمتو سمايل… الحقيقة الكاملة", link: "https://f.io/Y3rKi3aJ", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } },
                       { v: 1, reviews: { Hajar: "pending" } },
                       { v: 2, reviews: { Hajar: "approved" } } ] },

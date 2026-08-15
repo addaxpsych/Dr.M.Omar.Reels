@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-14",
+  lastUpdated: "2026-08-15",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -87,7 +87,7 @@ const PROJECT = {
         eps: [8]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [9, 10, 11, 12, 13, 14, 20, 21, 22, 23, 24] },
+        { label: "Review", series: 1, eps: [9, 10, 11, 12, 13, 14, 20, 21, 22, 23, 24, 25, 26] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
@@ -123,7 +123,7 @@ const PROJECT = {
       accent: "#8F5714",      // copper, dark enough for 11px text on white (AA)
       accentSoft: "#FEDBBF",  // peach wash — the series head, minis and cards
                               // (copper on it is 4.6:1, measured)
-      total: 26,
+      total: 27,
       episodes: [
         { n: "intro", title: "أسرار تصحيح الإبصار — تبسيط علمي لقرار مهم", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
@@ -180,7 +180,11 @@ const PROJECT = {
         { n: 24, title: "ليه ناس كتير بتسافر مصر تعمل ليزر لتصحيح النظر؟", link: "https://f.io/JSnFBUjY", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         /* Ep 25 is Ep 24 again, delivered in English. A Latin title renders LTR. */
-        { n: 25, title: "Why do so many people travel to Egypt for laser vision correction?", link: null, status: "not-started", versions: [] }
+        { n: 25, title: "Why do so many people travel to Egypt for laser vision correction?", link: "https://f.io/ixv65yYL", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        /* Ep 26 closes the series — a recap, not in scripts/Refractive.txt. */
+        { n: 26, title: "عملية تصحيح الإبصار قرار", link: "https://f.io/a-WcseLS", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] }
       ]
     },
 

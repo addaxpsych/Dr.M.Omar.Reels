@@ -87,7 +87,7 @@ const PROJECT = {
         eps: [8]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [9, 10, 11, 12, 13, 14, 20, 21, 22, 23, 24, 25, 26] },
+        { label: "Review", series: 1, eps: [9, 10, 11, 12, 13, 14, 17, 20, 21, 22, 23, 24, 25, 26] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
@@ -166,7 +166,8 @@ const PROJECT = {
         { n: 15, title: "هل كل أجهزة الليزر زي بعض؟ ولا الفرق كبير", link: null, status: "not-started", versions: [] },
         { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: null, status: "not-started", versions: [] },
+        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: "https://f.io/4zEWC3Ic", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: null, status: "not-started", versions: [] },
         { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: null, status: "not-started", versions: [] },
         { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "in-review",

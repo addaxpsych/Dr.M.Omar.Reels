@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-15",
+  lastUpdated: "2026-08-17",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -87,7 +87,7 @@ const PROJECT = {
         eps: [8]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [9, 10, 11, 12, 13, 14, 17, 20, 21, 22, 23, 24, 25, 26] },
+        { label: "Review", series: 1, eps: [9, 10, 11, 12, 13, 14, 17, 18, 20, 21, 22, 23, 24, 25, 26] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
@@ -168,7 +168,8 @@ const PROJECT = {
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: "https://f.io/4zEWC3Ic", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: null, status: "not-started", versions: [] },
+        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: "https://f.io/m7sEvHbu", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: null, status: "not-started", versions: [] },
         { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },

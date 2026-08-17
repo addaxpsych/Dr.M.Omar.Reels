@@ -82,12 +82,12 @@ const PROJECT = {
       role: "Reviewer",
       tone: "lavender",
       note: {
-        text: "Hello Hajar — important: kindly check Ep 8 V1 in Series 1 for approval first:",
+        text: "Hello Hajar — important: kindly check Ep 9 V1 in Series 1 for approval first:",
         series: 1,
-        eps: [8]
+        eps: [9]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [9, 10, 11, 12, 13, 14, 17, 18, 20, 21, 22, 23, 24, 25, 26] },
+        { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14, 17, 18, 20, 21, 22, 23, 24, 25, 26] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]

@@ -38,10 +38,13 @@
     <p class="metaline" data-rise style="animation-delay:.04s">
       <span class="dot"></span>Last updated <b id="lastUpdated">—</b>
     </p>
-    <div class="sectionhead" style="margin-top:1.5rem">
+    <!-- "On everyone's plate" is hidden for now. The data still lives in
+         PROJECT.todos and app.js still fills #todos — un-hide these two
+         elements to bring the section back. -->
+    <div class="sectionhead" style="margin-top:1.5rem" hidden>
       <p class="eyebrow" id="td">On everyone's plate</p>
     </div>
-    <div class="todos" id="todos" data-rise style="animation-delay:.12s"></div>
+    <div class="todos" id="todos" data-rise style="animation-delay:.12s" hidden></div>
   </section>
 
   <!-- =================================================== dashboard ==== -->

@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-17",
+  lastUpdated: "2026-08-25",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -166,9 +166,9 @@ const PROJECT = {
         { n: 15, title: "هل كل أجهزة الليزر زي بعض؟ ولا الفرق كبير", link: null, status: "not-started", versions: [] },
         { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: "https://f.io/4zEWC3Ic", status: "in-review",
+        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: null, status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: "https://f.io/m7sEvHbu", status: "in-review",
+        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: null, status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: null, status: "not-started", versions: [] },
         { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "in-review",
@@ -231,10 +231,16 @@ const PROJECT = {
             { v: 3, reviews: { Hajar: "revisions" } },
             { v: 4, reviews: { Hajar: "approved" } }
           ] },
-        { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "revisions",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
-        { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "revisions",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
+        { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "in-review",
+          versions: [
+            { v: 1, reviews: { Hajar: "revisions" } },
+            { v: 2, reviews: { Hajar: "pending" } }
+          ] },
+        { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "in-review",
+          versions: [
+            { v: 1, reviews: { Hajar: "revisions" } },
+            { v: 2, reviews: { Hajar: "pending" } }
+          ] },
         { n: 9, title: "هل العدسة الأمريكية هي الأفضل فعلاً؟", link: "https://f.io/wmc9i0Wu", status: "revisions",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 10, title: "هل ينفع أزرع عدسة من غير ما أشيل عدسة العين؟ (ICL)", link: "https://f.io/6P44-nPo", status: "revisions",

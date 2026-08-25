@@ -186,6 +186,11 @@ a { color: inherit; }
 .todo__eps > *, .todo__groups > * { min-width: 0; }
 .rule__body, .series__names, .todo__id { min-width: 0; }
 
+/* Most containers here set `display` themselves, which beats the UA sheet's
+   [hidden] { display: none }. This keeps the plain `hidden` attribute working
+   as a way to park a whole section without deleting its markup or data. */
+[hidden] { display: none !important; }
+
 /* visually hidden, still read by screen readers and still focusable */
 .sr-only {
   position: absolute;

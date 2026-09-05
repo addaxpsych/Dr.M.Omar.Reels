@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-08-25",
+  lastUpdated: "2026-09-05",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -148,12 +148,12 @@ const PROJECT = {
           versions: [ { v: 0, reviews: { Hajar: "pending" } },
                       { v: 1, reviews: { Hajar: "pending" } },
                       { v: 2, reviews: { Hajar: "approved" } } ] },
-        { n: 8, title: "فيمتو سمايل برو… مش تطوير، دي ثورة", link: "https://f.io/cVeSSjU7", status: "in-review",
+        { n: 8, title: "فيمتو سمايل برو… مش تطوير، دي ثورة", link: "https://f.io/cVeSSjU7", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } },
                       { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 9,  title: "تصحيح النظر بالليزر من غير ما نلمس العين | Trans PRK", link: "https://f.io/j4gBKN-I", status: "in-review",
+        { n: 9,  title: "تصحيح النظر بالليزر من غير ما نلمس العين | Trans PRK", link: "https://f.io/j4gBKN-I", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 10, title: "PRK vs LASIK… الحقيقة اللي محدش بيقولها", link: "https://f.io/Es98Ggut", status: "in-review",
+        { n: 10, title: "PRK vs LASIK… الحقيقة اللي محدش بيقولها", link: "https://f.io/Es98Ggut", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 11, title: "أعمل فيمتو سمايل ولا فيمتو ليزك؟ الفرق الحقيقي", link: "https://f.io/JL1xSn5z", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
@@ -210,7 +210,7 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 3, title: "العدسة العادية ولا العدسة المتقدمة؟ القرار مش بسيط", link: "https://f.io/aDKDL6JU", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
-        { n: 4, title: "العدسة الترايفوكال أم العدسة ممتدة المجال؟ الحقيقة العلمية وراء الاختيار", link: "https://f.io/Ggs9JQoa", status: "in-review",
+        { n: 4, title: "العدسة الترايفوكال أم العدسة ممتدة المجال؟ الحقيقة العلمية وراء الاختيار", link: "https://f.io/Ggs9JQoa", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions" } },
@@ -218,13 +218,13 @@ const PROJECT = {
             { v: 4, reviews: { Hajar: "approved" } },
             { v: 5, reviews: { Hajar: "approved" } }
           ] },
-        { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "in-review",
+        { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions" } },
             { v: 3, reviews: { Hajar: "approved" } }
           ] },
-        { n: 6, title: "إزاي تختار العدسة المناسبة ليك؟", link: "https://f.io/itPJNpsP", status: "in-review",
+        { n: 6, title: "إزاي تختار العدسة المناسبة ليك؟", link: "https://f.io/itPJNpsP", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions" } },

@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-09-05",
+  lastUpdated: "2026-09-14",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -87,7 +87,7 @@ const PROJECT = {
         eps: [9]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14, 17, 18, 20, 21, 22, 23, 24, 25, 26] },
+        { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14, 15, 17, 18, 20, 21, 22, 23, 24, 25, 26] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
@@ -163,7 +163,8 @@ const PROJECT = {
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 14, title: "الليزر التفصيلي ببصمة العين | Customized vs Standard", link: "https://f.io/z5WofLTh", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 15, title: "هل كل أجهزة الليزر زي بعض؟ ولا الفرق كبير", link: null, status: "not-started", versions: [] },
+        { n: 15, title: "هل كل أجهزة الليزر زي بعض؟ ولا الفرق كبير", link: "https://f.io/zz_UkFQ5", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: null, status: "in-review",

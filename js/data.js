@@ -155,17 +155,17 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 10, title: "PRK vs LASIK… الحقيقة اللي محدش بيقولها", link: "https://f.io/Es98Ggut", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 11, title: "أعمل فيمتو سمايل ولا فيمتو ليزك؟ الفرق الحقيقي", link: "https://f.io/JL1xSn5z", status: "in-review",
+        { n: 11, title: "أعمل فيمتو سمايل ولا فيمتو ليزك؟ الفرق الحقيقي", link: "https://f.io/JL1xSn5z", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 12, title: "الأمان في عمليات الليزر… مين أأمن عملية؟", link: "https://f.io/hsMS_b-v", status: "in-review",
+        { n: 12, title: "الأمان في عمليات الليزر… مين أأمن عملية؟", link: "https://f.io/hsMS_b-v", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 13, title: "كفاءة الرؤية بعد الليزك… السر في الـ Laser Profile", link: "https://f.io/WgFOUjwA", status: "in-review",
+        { n: 13, title: "كفاءة الرؤية بعد الليزك… السر في الـ Laser Profile", link: "https://f.io/WgFOUjwA", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 14, title: "الليزر التفصيلي ببصمة العين | Customized vs Standard", link: "https://f.io/z5WofLTh", status: "in-review",
+        { n: 14, title: "الليزر التفصيلي ببصمة العين | Customized vs Standard", link: "https://f.io/z5WofLTh", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 15, title: "هل كل أجهزة الليزر زي بعض؟ ولا الفرق كبير", link: "https://f.io/zz_UkFQ5", status: "in-review",
+        { n: 15, title: "هل كل أجهزة الليزر زي بعض؟ ولا الفرق كبير", link: "https://f.io/zz_UkFQ5", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "in-review",
+        { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
         { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: "https://f.io/YwAdO_dg", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
@@ -233,12 +233,12 @@ const PROJECT = {
             { v: 3, reviews: { Hajar: "revisions" } },
             { v: 4, reviews: { Hajar: "approved" } }
           ] },
-        { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "in-review",
+        { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "pending" } }
           ] },
-        { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "in-review",
+        { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "pending" } }

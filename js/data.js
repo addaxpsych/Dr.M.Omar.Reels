@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-09-14",
+  lastUpdated: "2026-09-23",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -87,7 +87,7 @@ const PROJECT = {
         eps: [9]
       },
       tasks: [
-        { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14, 15, 17, 18, 20, 21, 22, 23, 24, 25, 26] },
+        { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
         { label: "Review", series: 3, eps: [2] }
       ]
@@ -167,11 +167,12 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: null, status: "in-review",
+        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: "https://f.io/YwAdO_dg", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: null, status: "in-review",
+        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: "https://f.io/37ZZqy-9", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: null, status: "not-started", versions: [] },
+        { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: "https://f.io/XQWOcjxX", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 21, title: "أهم قرار قبل عملية الليزر لتصحيح النظر… اختيار الدكتور", link: "https://f.io/fNNsCr36", status: "in-review",

@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-09-23",
+  lastUpdated: "2026-10-01",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -89,7 +89,7 @@ const PROJECT = {
       tasks: [
         { label: "Review", series: 1, eps: [8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26] },
         { label: "Review", series: 2, eps: [8, 9, 10, 11, 12, 13, 14] },
-        { label: "Review", series: 3, eps: [2] }
+        { label: "Review", series: 3, eps: [1, 2, 3, 4, 5, 6, 7, 8, 9] }
       ]
     },
     {
@@ -167,11 +167,11 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 16, title: "هل كل أجهزة الفيمتوليزر زي بعض؟ وليه بنسمع أسعار متفاوتة؟", link: "https://f.io/FSxhnmnX", status: "published",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: "https://f.io/YwAdO_dg", status: "in-review",
+        { n: 17, title: "هل كل الناس ينفع تعمل ليزر؟", link: "https://f.io/YwAdO_dg", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: "https://f.io/37ZZqy-9", status: "in-review",
+        { n: 18, title: "لو بتفكر تعمل ليزر… اوعى تعمل الأخطاء دي", link: "https://f.io/37ZZqy-9", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: "https://f.io/XQWOcjxX", status: "in-review",
+        { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: "https://f.io/XQWOcjxX", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
@@ -273,16 +273,24 @@ const PROJECT = {
       /* This series has no intro reel. */
       total: 9,
       episodes: [
-        { n: 1, title: "قرار بسيط… خلّى عملية سهلة تتحول لزراعة قرنية", link: null, status: "not-started", versions: [] },
-        { n: 2, title: "لما الإعلان يسبق الخبرة… المريض هو اللي يدفع الثمن", link: "https://f.io/mTk6uh0s", status: "in-review",
+        { n: 1, title: "قرار بسيط… خلّى عملية سهلة تتحول لزراعة قرنية", link: "https://f.io/lCWVh7Ak", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        { n: 2, title: "لما الإعلان يسبق الخبرة… المريض هو اللي يدفع الثمن", link: "https://f.io/RI9oQb1H", status: "in-review",
           versions: [ { v: 0, reviews: { Hajar: "pending" } } ] },
-        { n: 3, title: "أخطر قرار… إزاي تختار أفضل دكتور عيون من الإنترنت؟", link: null, status: "not-started", versions: [] },
-        { n: 4, title: "ليه سعر الفيمتوليزك بيختلف؟ الإجابة مش اللي في بالك", link: null, status: "not-started", versions: [] },
-        { n: 5, title: "أهم 5 أسئلة قبل عملية الفيمتوليزك… الفرق بين نتيجة ممتازة ونتيجة عادية", link: null, status: "not-started", versions: [] },
-        { n: 6, title: "ICL مش نوع واحد… الفرق اللي محدش بيقوله لك", link: null, status: "not-started", versions: [] },
-        { n: 7, title: "إيه أفضل عدسة ترايفوكال؟ الإجابة اللي ناس كتير مش عايزة تسمعها", link: null, status: "not-started", versions: [] },
-        { n: 8, title: "الفرق بين العدسات ثلاثية البؤر (Trifocal) والعدسات ممتدة المجال (EDOF)… ومين فيهم أفضل؟", link: null, status: "not-started", versions: [] },
-        { n: 9, title: "سعر عدسة EDOF كام؟ قبل ما تسأل لازم تفهم الفرق ده", link: null, status: "not-started", versions: [] }
+        { n: 3, title: "أخطر قرار… إزاي تختار أفضل دكتور عيون من الإنترنت؟", link: "https://f.io/XEayUxfn", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        { n: 4, title: "ليه سعر الفيمتوليزك بيختلف؟ الإجابة مش اللي في بالك", link: "https://f.io/0X3TzpmU", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        { n: 5, title: "أهم 5 أسئلة قبل عملية الفيمتوليزك… الفرق بين نتيجة ممتازة ونتيجة عادية", link: "https://f.io/E4Xa__zm", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        { n: 6, title: "ICL مش نوع واحد… الفرق اللي محدش بيقوله لك", link: "https://f.io/7NSHjPMs", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        { n: 7, title: "إيه أفضل عدسة ترايفوكال؟ الإجابة اللي ناس كتير مش عايزة تسمعها", link: "https://f.io/OqibGeMP", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        { n: 8, title: "الفرق بين العدسات ثلاثية البؤر (Trifocal) والعدسات ممتدة المجال (EDOF)… ومين فيهم أفضل؟", link: "https://f.io/I2VvAc2i", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
+        { n: 9, title: "سعر عدسة EDOF كام؟ قبل ما تسأل لازم تفهم الفرق ده", link: "https://f.io/e2XHuPSq", status: "in-review",
+          versions: [ { v: 1, reviews: { Hajar: "pending" } } ] }
       ]
     }
   ]

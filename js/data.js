@@ -40,7 +40,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-10-01",
+  lastUpdated: "2026-10-17",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -173,7 +173,7 @@ const PROJECT = {
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 19, title: "هل نتيجة عمليات الليزر لتصحيح النظر مضمونة؟", link: "https://f.io/XQWOcjxX", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
-        { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "in-review",
+        { n: 20, title: "مضاعفات عمليات الليزر… الحقيقة بدون تهويل", link: "https://f.io/Xi2hec9F", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
         { n: 21, title: "أهم قرار قبل عملية الليزر لتصحيح النظر… اختيار الدكتور", link: "https://f.io/fNNsCr36", status: "in-review",
           versions: [ { v: 1, reviews: { Hajar: "pending" } } ] },
@@ -243,15 +243,15 @@ const PROJECT = {
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "pending" } }
           ] },
-        { n: 9, title: "هل العدسة الأمريكية هي الأفضل فعلاً؟", link: "https://f.io/wmc9i0Wu", status: "revisions",
+        { n: 9, title: "هل العدسة الأمريكية هي الأفضل فعلاً؟", link: "https://f.io/wmc9i0Wu", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
-        { n: 10, title: "هل ينفع أزرع عدسة من غير ما أشيل عدسة العين؟ (ICL)", link: "https://f.io/6P44-nPo", status: "revisions",
+        { n: 10, title: "هل ينفع أزرع عدسة من غير ما أشيل عدسة العين؟ (ICL)", link: "https://f.io/6P44-nPo", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
-        { n: 11, title: "هل ينفع نعمل زراعة عدسات مع الليزر؟ (Bioptics)", link: "https://f.io/edLllE2E", status: "revisions",
+        { n: 11, title: "هل ينفع نعمل زراعة عدسات مع الليزر؟ (Bioptics)", link: "https://f.io/edLllE2E", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
-        { n: 12, title: "في زراعة العدسات… كل التفاصيل بتفرق", link: "https://f.io/MQLMKoph", status: "revisions",
+        { n: 12, title: "في زراعة العدسات… كل التفاصيل بتفرق", link: "https://f.io/MQLMKoph", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
-        { n: 13, title: "بعد زراعة العدسات… هل ممكن النظر يضعف تاني؟", link: "https://f.io/7GstIi8Y", status: "revisions",
+        { n: 13, title: "بعد زراعة العدسات… هل ممكن النظر يضعف تاني؟", link: "https://f.io/7GstIi8Y", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
         { n: 14, title: "الخلاصة… إزاي تختار صح؟", link: "https://f.io/TDPy1csj", status: "revisions",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] }

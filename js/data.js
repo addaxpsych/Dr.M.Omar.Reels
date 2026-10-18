@@ -137,10 +137,8 @@ const PROJECT = {
       accent: "#8F5714",      // copper, dark enough for 11px text on white (AA)
       accentSoft: "#FEDBBF",  // peach wash — the series head, minis and cards
                               // (copper on it is 4.6:1, measured)
-      total: 27,
+      total: 26,
       episodes: [
-        { n: "intro", title: "أسرار تصحيح الإبصار — تبسيط علمي لقرار مهم", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 1, title: "مش كل عمليات تصحيح النظر بالليزر واحد", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
           horizontal: { link: "https://f.io/UbW8gxDb", status: "in-review",
@@ -218,10 +216,8 @@ const PROJECT = {
       accent: "#0F48B5",      // brand blue — confirmed. Editor guide §5.3 / §15
       accentSoft: "#CCE3FF",  // sky wash — the series head, minis and cards
                               // (brand blue on it is 6.1:1, measured)
-      total: 15,
+      total: 14,
       episodes: [
-        { n: "intro", title: "العدسات داخل العين — تبسيط علمي لقرار مهم", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 1, title: "إيه هي العدسات اللي بنزرعها داخل العين؟", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 2, title: "أنواع العدسات داخل العين", link: "https://f.io/GbNr3Avf", status: "published",
@@ -286,7 +282,6 @@ const PROJECT = {
       accent: "#55555A",
       accentSoft: "#EFEFF1",
       accentTBD: true,
-      /* This series has no intro reel. */
       total: 9,
       episodes: [
         { n: 1, title: "قرار بسيط… خلّى عملية سهلة تتحول لزراعة قرنية", link: "https://f.io/lCWVh7Ak", status: "in-review",

@@ -1,6 +1,7 @@
 /* ============================================================================
    Dr. M. Omar Reels — renderer
-   Reads PROJECT from data.js and builds the dashboard.
+   Reads PROJECT from data.js and builds the dashboard, in either format
+   (vertical reels or horizontal cuts) — see inFormat().
    Nothing here needs editing to update the site — edit js/data.js instead.
    ========================================================================== */
 (function () {
@@ -29,6 +30,38 @@
   /** "Ep 04" / "Intro" */
   function epLabel(n) {
     return n === "intro" ? "Intro" : "Ep " + String(n).padStart(2, "0");
+  }
+
+  /* --------------------------------------------------------------- formats --
+     Every episode is delivered twice: the vertical reel (the episode's own
+     link/status/versions) and a horizontal cut (`horizontal: {…}` on the same
+     episode). The two are reviewed independently, so each has its own status
+     and history — only the number and title are shared.
+
+     inFormat() hands the rest of the renderer an episode-shaped object for the
+     chosen format, so rowHTML/cardHTML/tally never need to know formats exist.
+     An episode with no `horizontal` yet simply hasn't started that cut.     */
+
+  const FORMATS = ["vertical", "horizontal"];
+  const FORMAT_LABEL = { vertical: "Vertical", horizontal: "Horizontal" };
+  const FORMAT_DEFAULT = "vertical";
+
+  function inFormat(ep, format) {
+    if (format !== "horizontal") return ep;
+    const h = ep.horizontal || {};
+    return {
+      n: ep.n,
+      title: ep.title,
+      link: h.link || null,
+      status: h.status || "not-started",
+      versions: Array.isArray(h.versions) ? h.versions : []
+    };
+  }
+
+  function seriesInFormat(format) {
+    return PROJECT.series.map(s => Object.assign({}, s, {
+      episodes: s.episodes.map(ep => inFormat(ep, format))
+    }));
   }
 
   /* ------------------------------------------------------- episode index --
@@ -315,21 +348,51 @@
 
   /* ------------------------------------------------------------ render -- */
 
+  let GRAND_TOTAL = 0;
+
+  /* Everything that does not depend on the format: built once. */
   function render() {
     if (typeof PROJECT === "undefined") {
       console.error("data.js did not load — nothing to render.");
       return;
     }
 
-    const grandTotal = assertTotals();
+    GRAND_TOTAL = assertTotals();
     buildEpIndex();
 
     /* --- header meta --- */
     const lu = $("#lastUpdated");
     if (lu) lu.textContent = fmtDate(PROJECT.lastUpdated) || "—";
 
+    /* --- to-do cards --- always the vertical cuts, which is what every task
+       in PROJECT.todos is about; the index above is built from them. */
+    $("#todos").innerHTML = (PROJECT.todos || []).map(todoHTML).join("");
+
+    /* --- format tab counts: one tally per format, so each tab shows its own
+       progress whichever one is selected --- */
+    FORMATS.forEach(f => {
+      const el = document.querySelector(`[data-format-count="${f}"]`);
+      if (!el) return;
+      const eps = seriesInFormat(f).reduce((a, s) => a.concat(s.episodes), []);
+      el.textContent = ` · ${tally(eps).cleared}/${GRAND_TOTAL} cleared`;
+    });
+
+    wireViewToggle();
+    wireFormatTabs();   /* draws the overview and series for the stored format */
+  }
+
+  /* Everything a format switch changes: the overview, the series bars and
+     every episode row and card. Re-rendered whole on each switch. */
+  function renderFormat(format) {
+    const series = seriesInFormat(format);
+    const grandTotal = GRAND_TOTAL;
+
+    document.querySelectorAll("[data-format-name]").forEach(el => {
+      el.textContent = FORMAT_LABEL[format];
+    });
+
     /* --- roll everything up --- */
-    const allEpisodes = PROJECT.series.reduce((a, s) => a.concat(s.episodes), []);
+    const allEpisodes = series.reduce((a, s) => a.concat(s.episodes), []);
     const overall = tally(allEpisodes);
 
     $("#ovCleared").textContent = overall.cleared;
@@ -339,7 +402,7 @@
     $("#ovLegend").innerHTML = legendHTML(overall.counts);
 
     /* --- per-series mini cards --- */
-    $("#miniset").innerHTML = PROJECT.series.map(s => {
+    $("#miniset").innerHTML = series.map(s => {
       const t = tally(s.episodes);
       const n = s.episodes.length;
       return `<a class="mini" href="#series-${esc(s.id)}"
@@ -350,14 +413,13 @@
       </a>`;
     }).join("");
 
-    /* --- to-do cards --- */
-    $("#todos").innerHTML = (PROJECT.todos || []).map(todoHTML).join("");
-
-    /* --- series accordions --- */
-    $("#serieslist").innerHTML = PROJECT.series.map((s, i) => {
+    /* --- series accordions --- a format switch keeps whichever series were
+       open; only the very first render falls back to "first one open". */
+    const wasOpen = openSeriesIds();
+    $("#serieslist").innerHTML = series.map((s, i) => {
       const t = tally(s.episodes);
       const n = s.episodes.length;
-      const open = i === 0;
+      const open = wasOpen ? wasOpen.has("series-" + s.id) : i === 0;
       const head = `s-head-${esc(s.id)}`;
       const body = `s-body-${esc(s.id)}`;
 
@@ -402,8 +464,22 @@
     animateBars();
   }
 
+  /** ids of the series currently expanded, or null before the first render */
+  function openSeriesIds() {
+    const heads = document.querySelectorAll("#serieslist .series__head");
+    if (!heads.length) return null;
+    const open = new Set();
+    heads.forEach(btn => {
+      if (btn.getAttribute("aria-expanded") === "true") open.add(btn.closest(".series").id);
+    });
+    return open;
+  }
+
   /* ------------------------------------------------------------- wiring -- */
 
+  /* Wires the elements renderFormat() just created. The two toggles live in
+     the static markup and are wired once, in render(), or every format switch
+     would stack another listener on them. */
   function wireUp() {
     /* accordion toggles */
     document.querySelectorAll(".series__head").forEach(btn => {
@@ -425,9 +501,6 @@
       });
     });
 
-    /* list / cards toggle — one switch, all three series */
-    wireViewToggle();
-
     /* jumping from a mini card must also open that series */
     document.querySelectorAll(".mini").forEach(a => {
       a.addEventListener("click", () => {
@@ -441,22 +514,28 @@
     });
   }
 
+  /* --------------------------------------------------- stored preferences -- */
+
+  /* localStorage throws in a few environments (file:// with storage blocked,
+     private modes, the jsdom harness) — never let it take the page down. */
+  function readPref(key, allowed, fallback) {
+    try {
+      const v = window.localStorage.getItem(key);
+      return allowed.indexOf(v) > -1 ? v : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function writePref(key, value) {
+    try { window.localStorage.setItem(key, value); } catch (e) { /* fine */ }
+  }
+
   /* --------------------------------------------------- list / cards view -- */
 
   const VIEW_KEY = "epView";
   const VIEWS = ["cards", "list"];
   const VIEW_DEFAULT = "cards";   /* cards is the main view; list is the opt-in */
-
-  /* localStorage throws in a few environments (file:// with storage blocked,
-     private modes, the jsdom harness) — never let it take the page down. */
-  function storedView() {
-    try {
-      const v = window.localStorage.getItem(VIEW_KEY);
-      return VIEWS.indexOf(v) > -1 ? v : VIEW_DEFAULT;
-    } catch (e) {
-      return VIEW_DEFAULT;
-    }
-  }
 
   function setView(view, persist) {
     const list = $("#serieslist");
@@ -465,15 +544,36 @@
     document.querySelectorAll("#viewToggle button").forEach(btn => {
       btn.setAttribute("aria-pressed", String(btn.dataset.view === view));
     });
-    if (!persist) return;
-    try { window.localStorage.setItem(VIEW_KEY, view); } catch (e) { /* fine */ }
+    if (persist) writePref(VIEW_KEY, view);
   }
 
   function wireViewToggle() {
     document.querySelectorAll("#viewToggle button").forEach(btn => {
       btn.addEventListener("click", () => setView(btn.dataset.view, true));
     });
-    setView(storedView(), false);
+    setView(readPref(VIEW_KEY, VIEWS, VIEW_DEFAULT), false);
+  }
+
+  /* ------------------------------------------------ vertical / horizontal -- */
+
+  const FORMAT_KEY = "epFormat";
+
+  function setFormat(format, persist) {
+    document.querySelectorAll("#formatTabs [data-format]").forEach(btn => {
+      btn.setAttribute("aria-pressed", String(btn.dataset.format === format));
+    });
+    renderFormat(format);
+    if (persist) writePref(FORMAT_KEY, format);
+  }
+
+  function wireFormatTabs() {
+    document.querySelectorAll("#formatTabs [data-format]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.getAttribute("aria-pressed") === "true") return;
+        setFormat(btn.dataset.format, true);
+      });
+    });
+    setFormat(readPref(FORMAT_KEY, FORMATS, FORMAT_DEFAULT), false);
   }
 
   /* Bars are rendered at width 0 and filled on the next frame so the CSS

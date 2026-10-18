@@ -45,11 +45,29 @@
       <p class="eyebrow" id="td">On everyone's plate</p>
     </div>
     <div class="todos" id="todos" data-rise style="animation-delay:.12s" hidden></div>
+
+    <!-- Vertical / Horizontal. Everything below this switches with it; the
+         to-do cards above do not (their tasks are all about vertical cuts).
+         aria-pressed here is only the pre-script default — app.js corrects it
+         from the stored choice and fills in the counts. -->
+    <div class="formats" id="formatTabs" role="group" aria-label="Video format"
+         data-rise style="animation-delay:.12s">
+      <button type="button" class="fmt fmt--vertical" data-format="vertical" aria-pressed="true">
+        <span class="fmt__icon" aria-hidden="true"><i></i></span>
+        <span class="fmt__name">Vertical</span>
+        <span class="fmt__sub">9:16<span data-format-count="vertical"></span></span>
+      </button>
+      <button type="button" class="fmt fmt--horizontal" data-format="horizontal" aria-pressed="false">
+        <span class="fmt__icon" aria-hidden="true"><i></i></span>
+        <span class="fmt__name">Horizontal</span>
+        <span class="fmt__sub">16:9<span data-format-count="horizontal"></span></span>
+      </button>
+    </div>
   </section>
 
   <!-- =================================================== dashboard ==== -->
   <section class="shell section" aria-labelledby="ov">
-    <p class="eyebrow" id="ov">Overview</p>
+    <p class="eyebrow" id="ov"><span>Overview · <span data-format-name>Vertical</span></span></p>
 
     <div class="dash">
 
@@ -84,7 +102,7 @@
   <!-- ====================================================== series ==== -->
   <section class="shell section" aria-labelledby="se">
     <div class="sectionhead">
-      <p class="eyebrow" id="se">The three series</p>
+      <p class="eyebrow" id="se"><span>The three series · <span data-format-name>Vertical</span></span></p>
       <div class="viewtoggle" id="viewToggle" role="group" aria-label="Episode view">
         <button type="button" data-view="cards" aria-pressed="true">Cards</button>
         <button type="button" data-view="list" aria-pressed="false">List</button>

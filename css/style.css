@@ -183,7 +183,7 @@ a { color: inherit; }
    item of a grid here is allowed to shrink instead. */
 .dash > *, .dash__side > *, .miniset > *, .serieslist > *,
 .rules > *, .figs > *, .swatches > *, .todos > *, .ecards > *,
-.todo__eps > *, .todo__groups > * { min-width: 0; }
+.todo__eps > *, .todo__groups > *, .formats > * { min-width: 0; }
 .rule__body, .series__names, .todo__id { min-width: 0; }
 
 /* Most containers here set `display` themselves, which beats the UA sheet's
@@ -1095,6 +1095,98 @@ a { color: inherit; }
   .vrow td[data-c="ep"] { padding-left: 0 !important; }
   .vrow td[data-c="title"], .vrow td[data-c="status"] { display: none; }
   .vd { font-size: 0.72rem; }
+}
+
+/* ================================================ vertical / horizontal === */
+
+/* The same recessed-track / raised-segment control as .viewtoggle, scaled up,
+   because it is the same kind of switch — except this one swaps every number,
+   bar and link below it, so it sits at the top and reads as the page's tabs.
+   The inactive tab sits on --ground-2: --ink-3 holds 5.5:1 there. */
+.formats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  padding: 5px;
+  margin-top: 1.25rem;
+  background: var(--ground-2);
+  border-radius: var(--r-lg);
+}
+
+.fmt {
+  font: inherit;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.1rem 1rem;
+  padding: 1.05rem 1.35rem;
+  text-align: left;
+  color: var(--ink-3);
+  background: none;
+  border: 0;
+  border-radius: calc(var(--r-lg) - 5px);   /* also beats :focus-visible's 4px */
+  cursor: pointer;
+  transition: background 0.22s var(--ease), color 0.22s var(--ease),
+              box-shadow 0.22s var(--ease);
+}
+.fmt:hover { color: var(--ink-2); }
+.fmt[aria-pressed="true"] {
+  color: var(--ink);
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+}
+
+/* the frame itself, drawn to its aspect ratio — decorative, so currentColor
+   (and --accent when active) is fine at any contrast */
+.fmt__icon {
+  grid-row: span 2;
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+}
+.fmt__icon i {
+  display: block;
+  border: 2px solid currentColor;
+  border-radius: 6px;
+  transition: border-color 0.22s var(--ease), background 0.22s var(--ease);
+}
+.fmt--vertical   .fmt__icon i { width: 22px; height: 36px; }
+.fmt--horizontal .fmt__icon i { width: 40px; height: 24px; }
+.fmt[aria-pressed="true"] .fmt__icon i {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.fmt__name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+.fmt__sub {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  line-height: 1.35;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Two tabs side by side leave ~170px each at phone width — not enough for
+   the frame beside "Horizontal". Stack the frame above the label instead. */
+@media (max-width: 560px) {
+  .fmt {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+    padding: 0.85rem 0.95rem 0.9rem;
+  }
+  .fmt__icon {
+    grid-row: auto;
+    height: 40px;
+    place-items: center start;
+    margin-bottom: 0.2rem;
+  }
+  .fmt__name { font-size: 1.05rem; }
+  .fmt__sub { font-size: 0.74rem; }
 }
 
 /* ==================================================== list / cards view === */

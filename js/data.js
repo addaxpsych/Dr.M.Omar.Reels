@@ -35,12 +35,26 @@
 
    The `link` sits on the EPISODE, not the version: every version of an episode
    shares the same review link.
+
+   HORIZONTAL — every episode is also delivered as a horizontal (16:9) cut.
+   The Vertical / Horizontal tabs at the top of the dashboard switch between
+   them. The fields above (`link`, `status`, `versions`) are the VERTICAL reel.
+   The horizontal cut gets its own block on the same episode, with its own
+   link, status and versions, reviewed separately:
+
+     { n: 1, title: "…", link: …, status: "published", versions: [ … ],
+       horizontal: { link: "https://f.io/…", status: "in-review",
+                     versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
+
+   Leave `horizontal` off an episode until its horizontal cut exists — it then
+   shows as "Hasn't started" on the Horizontal tab. The same status, verdict
+   and version rules apply to it as to the vertical reel.
    ========================================================================== */
 
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-10-17",
+  lastUpdated: "2026-10-18",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -128,7 +142,9 @@ const PROJECT = {
         { n: "intro", title: "أسرار تصحيح الإبصار — تبسيط علمي لقرار مهم", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 1, title: "مش كل عمليات تصحيح النظر بالليزر واحد", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
+          horizontal: { link: "https://f.io/UbW8gxDb", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 2, title: "إزاي تاخد أفضل رؤية من عملية الليزر؟", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 3, title: "هل الليزر آمن فعلاً؟ وفيه مخاطرة؟", link: null, status: "published",

@@ -11,7 +11,8 @@ for Dr. Mohamed Omar Yousef. Two views:
 - `guidelines.html` — the brand/technical rules the video editor (Alaa) must follow
 
 The dashboard has exactly three sections, in this order: `#todos`, the overview (`#ovBar`,
-`#miniset`), and `#serieslist`. `README.md` still documents a `PROJECT.updates` array and a "daily
+`#miniset`), and `#serieslist`. The Vertical / Horizontal tabs (`#formatTabs`) sit between the first
+two and switch everything below them — see **Vertical and horizontal formats**. `README.md` still documents a `PROJECT.updates` array and a "daily
 updates" feed — **that was removed**; nothing in `data.js` or `app.js` reads it. Trust this file.
 
 Audience is a small mixed team: the doctor, one decision maker (Hajar), and video editors.
@@ -132,11 +133,51 @@ Drive; `rowHTML` sniffs the host for the aria-label).
 `rowHTML()` returns the episode `<tr>` **plus one `<tr class="vrow">` per version**. Only the episode
 row carries `is-linked`/`data-href` — version rows must never navigate.
 
+### Vertical and horizontal formats
+
+Every episode is delivered twice: the vertical reel (9:16) and a horizontal cut (16:9). The episode's
+own `link` / `status` / `versions` are the **vertical** reel. The horizontal cut is an optional block
+on the same episode:
+
+```js
+horizontal: { link: "https://f.io/UbW8gxDb", status: "in-review",
+              versions: [ { v: 1, reviews: { Hajar: "pending" } } ] }
+```
+
+The two cuts are reviewed independently, so each has its own status and history. Only `n` and
+`title` are shared. Nothing derives one format's status from the other's: the S1 Ep 1 horizontal cut
+is `in-review` while its vertical reel is `published`, and that is correct. An episode with no
+`horizontal` block counts as `not-started` with no link and no versions, so the owner adds the block
+only when a cut exists. Every series therefore has the same episode count in both formats.
+
+`inFormat(ep, format)` (`app.js`) projects an episode into an episode-shaped object for either
+format, and `seriesInFormat()` does the same for the whole series list. `rowHTML`, `cardHTML` and
+`tally` never see the `horizontal` key, which is why they needed no changes. Keep it that way: teach
+the projection about a new format, not the fragments.
+
+Rendering is split in two:
+
+- `render()` runs once: header date, the to-do cards, both tabs' "N/51 cleared" counts (one `tally`
+  per format), and the wiring of the two static toggles. **Wire static markup only here.** Wiring it
+  in `wireUp()` would add another listener on every format switch.
+- `renderFormat(format)` runs on load and on every tab click. It redraws the overview, mini cards and
+  `#serieslist` from scratch, then calls `wireUp()` and `animateBars()`. It keeps whichever series
+  accordions were open (`openSeriesIds()`). Only the very first render falls back to "S1 open". The
+  Cards/List `data-view` sits on `#serieslist` itself, so it survives the redraw.
+
+**The to-do cards always read the vertical cuts.** The episode index is built from `PROJECT.series`
+as stored, and every task in `PROJECT.todos` is about vertical reels. The cards render in `render()`,
+outside the format switch, which is why they sit above the tabs.
+
+The choice persists to `localStorage` under `epFormat`. **Vertical is the default**
+(`FORMAT_DEFAULT`). The markup's `aria-pressed` on `#formatTabs` and the `data-format-name` heading
+text ("Vertical") must match it, because the script only corrects them once it has run.
+
 ### Two views of the same episodes
 
 Every series body renders **both** an episode table (`rowHTML`) and a card grid (`cardHTML`), and a
 single `data-view` attribute on `#serieslist` decides which is visible — CSS does the hiding, nothing
-re-renders on toggle. The Cards/List switch sits in `.sectionhead` above the accordions and persists
+re-renders on that toggle (unlike the format tabs, which do). The Cards/List switch sits in `.sectionhead` above the accordions and persists
 to `localStorage` under `epView`. **Cards is the default** (`VIEW_DEFAULT` in `app.js`); the markup's
 `data-view="cards"` and `aria-pressed` in `index.html` must be kept in step with it, since `setView()`
 only corrects them once the script has run.
@@ -230,7 +271,10 @@ The repo has no test suite. Verification is done with throwaway Node/jsdom harne
 scratchpad (`npm install jsdom` there, never in the project). When changing data or rendering,
 check at minimum:
 
-- Counts still add up: episode totals per series, cleared count, in-review count, unique link count
+- Counts still add up: episode totals per series, cleared count, in-review count, unique link count,
+  **in both formats** (click `#formatTabs [data-format="horizontal"]` and re-check). Each episode
+  row's `data-href` and pill must match that format's link and status, the to-do markup must be
+  byte-identical before and after a switch, and the open accordions must survive it
 - Rendered row counts: episode rows + version rows, verdict chip counts by type
 - To-do integrity: every episode referenced by a `tasks` group **or a `note`** resolves in the
   episode index, chip counts match the data, each chip's `href` and `epchip--<status>` class match

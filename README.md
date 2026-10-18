@@ -92,6 +92,23 @@ The link sits on the **episode**, not the version — every version of an episod
 for no link. A row with a link becomes clickable and gets an ↗ chip. Frame.io and Google Drive URLs
 both work; the chip names the host for screen readers.
 
+### Recipe — log a horizontal cut
+
+Every episode is also delivered as a horizontal (16:9) cut. The **Vertical / Horizontal** tabs at the
+top of the dashboard switch every count, bar and link between the two. The horizontal cut goes in its
+own `horizontal` block on the same episode, with its own link, status and versions. It is reviewed
+separately from the vertical reel:
+
+```js
+{ n: 1, title: "…", link: null, status: "published",
+  versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
+  horizontal: { link: "https://f.io/UbW8gxDb", status: "in-review",
+                versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
+```
+
+Leave `horizontal` off an episode until its cut exists. Until then it shows as **Hasn't started** on
+the Horizontal tab. Every recipe above works the same way inside the `horizontal` block.
+
 ### Recipe — post the day's update
 
 Add a new block at the **top** of the `updates` array:

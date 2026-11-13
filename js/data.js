@@ -54,7 +54,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-11-13",
+  lastUpdated: "2026-11-14",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -153,10 +153,15 @@ const PROJECT = {
                                     { v: 2, reviews: { Hajar: "pending" } },
                                     { v: 3, reviews: { Hajar: "pending" } } ] } },
         { n: 3, title: "هل الليزر آمن فعلاً؟ وفيه مخاطرة؟", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
+          horizontal: { link: "https://f.io/0Z8oAQZm", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } },
+                                    { v: 2, reviews: { Hajar: "pending" } } ] } },
         { n: 4, title: "الليزر بيصلح النظر إزاي؟", link: "https://f.io/UXNc-lOb", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } },
-                      { v: 2, reviews: { Hajar: "approved" } } ] },
+                      { v: 2, reviews: { Hajar: "approved" } } ],
+          horizontal: { link: "https://f.io/rSQNndLl", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 5, title: "هل كل مقاسات النظر اللي زي بعضها بيناسبها نفس عملية التصحيح؟", link: "https://f.io/dY_V6g1f", status: "published",
           versions: [ { v: 1, reviews: { Hajar: "revisions" } },
                       { v: 2, reviews: { Hajar: "revisions" } },

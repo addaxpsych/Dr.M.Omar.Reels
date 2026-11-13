@@ -54,7 +54,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-10-18",
+  lastUpdated: "2026-11-13",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -142,9 +142,12 @@ const PROJECT = {
         { n: 1, title: "مش كل عمليات تصحيح النظر بالليزر واحد", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
           horizontal: { link: "https://f.io/UbW8gxDb", status: "in-review",
-                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } },
+                                    { v: 5, reviews: { Hajar: "pending" } } ] } },
         { n: 2, title: "إزاي تاخد أفضل رؤية من عملية الليزر؟", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
+          horizontal: { link: "https://f.io/pCnLVoe2", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 3, title: "هل الليزر آمن فعلاً؟ وفيه مخاطرة؟", link: null, status: "published",
           versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
         { n: 4, title: "الليزر بيصلح النظر إزاي؟", link: "https://f.io/UXNc-lOb", status: "published",

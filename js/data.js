@@ -54,7 +54,7 @@
 const PROJECT = {
 
   /* Shown at the top of the dashboard. Change this every time you push. */
-  lastUpdated: "2026-11-20",
+  lastUpdated: "2026-11-21",
 
   /* Order here = order the verdicts are listed on every version row. */
   reviewers: ["Hajar"],
@@ -283,11 +283,17 @@ const PROJECT = {
       total: 14,
       episodes: [
         { n: 1, title: "إيه هي العدسات اللي بنزرعها داخل العين؟", link: null, status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
+          horizontal: { link: "https://f.io/PNE-Jgkt", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 2, title: "أنواع العدسات داخل العين", link: "https://f.io/GbNr3Avf", status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
+          horizontal: { link: "https://f.io/shduXBsS", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 3, title: "العدسة العادية ولا العدسة المتقدمة؟ القرار مش بسيط", link: "https://f.io/aDKDL6JU", status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "approved" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "approved" } } ],
+          horizontal: { link: "https://f.io/nqOYbvsV", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 4, title: "العدسة الترايفوكال أم العدسة ممتدة المجال؟ الحقيقة العلمية وراء الاختيار", link: "https://f.io/Ggs9JQoa", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
@@ -295,42 +301,64 @@ const PROJECT = {
             { v: 3, reviews: { Hajar: "revisions" } },
             { v: 4, reviews: { Hajar: "approved" } },
             { v: 5, reviews: { Hajar: "approved" } }
-          ] },
+          ],
+          horizontal: { link: "https://f.io/NcQWHGjq", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 5, title: "هل في عدسة أفضل فعلاً؟", link: "https://f.io/6uztHD0q", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions" } },
             { v: 3, reviews: { Hajar: "approved" } }
-          ] },
+          ],
+          horizontal: { link: "https://f.io/IHQeskNx", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 6, title: "إزاي تختار العدسة المناسبة ليك؟", link: "https://f.io/itPJNpsP", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "revisions" } },
             { v: 3, reviews: { Hajar: "revisions" } },
             { v: 4, reviews: { Hajar: "approved" } }
-          ] },
+          ],
+          horizontal: { link: "https://f.io/l7TZS6sN", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 7, title: "إزاي تستغنى عن النظارة بزراعة العدسات؟", link: "https://f.io/5K457md6", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "pending" } }
-          ] },
+          ],
+          horizontal: { link: "https://f.io/8NSJJFWR", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 8, title: "أشهر الأخطاء عند اختيار عدسات العين", link: "https://f.io/L72d8z1g", status: "published",
           versions: [
             { v: 1, reviews: { Hajar: "revisions" } },
             { v: 2, reviews: { Hajar: "pending" } }
-          ] },
+          ],
+          horizontal: { link: "https://f.io/kMmgJpfW", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 9, title: "هل العدسة الأمريكية هي الأفضل فعلاً؟", link: "https://f.io/wmc9i0Wu", status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ],
+          horizontal: { link: "https://f.io/109KRZ8x", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 10, title: "هل ينفع أزرع عدسة من غير ما أشيل عدسة العين؟ (ICL)", link: "https://f.io/6P44-nPo", status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ],
+          horizontal: { link: "https://f.io/yHE2TIhb", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 11, title: "هل ينفع نعمل زراعة عدسات مع الليزر؟ (Bioptics)", link: "https://f.io/edLllE2E", status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ],
+          horizontal: { link: "https://f.io/f1_xu1vE", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 12, title: "في زراعة العدسات… كل التفاصيل بتفرق", link: "https://f.io/MQLMKoph", status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ],
+          horizontal: { link: "https://f.io/x6rfRyWa", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 13, title: "بعد زراعة العدسات… هل ممكن النظر يضعف تاني؟", link: "https://f.io/7GstIi8Y", status: "published",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] },
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ],
+          horizontal: { link: "https://f.io/l6u6sL6M", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } },
         { n: 14, title: "الخلاصة… إزاي تختار صح؟", link: "https://f.io/TDPy1csj", status: "revisions",
-          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ] }
+          versions: [ { v: 1, reviews: { Hajar: "revisions" } } ],
+          horizontal: { link: "https://f.io/Ag1mCiO5", status: "in-review",
+                        versions: [ { v: 1, reviews: { Hajar: "pending" } } ] } }
       ]
     },
 
